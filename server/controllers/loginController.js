@@ -1,44 +1,35 @@
 import userModal from "../models/userModal.js";
+import bcrypt from "bcryptjs";
 
 const loginController = async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
+  const { email, password } = req.body;
 
-    if (!name) {
-      return res.send({ success: false, message: "Please Provide the name" });
-    }
-    if (!email) {
-      return res.send({ success: false, message: "Please Provide the email" });
-    }
-    if (!password) {
-      return res.send({
-        success: false,
-        message: "Please Provide the password",
-      });
-    }
-
-    const existingUser = await userModal.findOne({ email });
-    if (existingUser) {
-      return res.status(200).send({
-        success: true,
-        message: "Email is already there",
-      });
-    }
-
-    const userData = { name, email, password };
-
-    const user = userModal.create(userData);
-    res.status(200).send({
-      success: true,
-      message: "User account created successfully",
-    });
-  } catch (err) {
-    res.status(400).send({
-      message: "Error in register controller",
+  if (!email || !password) {
+    return res.send({
       success: false,
-      err,
+      message: "Please Provide the all details",
     });
   }
+
+  const user = await userModal.findOne({ email });
+  if (!user) {
+    return res.send({
+      success: false,
+      message: "User not found",
+    });
+  }
+  const isMatch = bcrypt.compareSync(password, user.password);
+  if (!isMatch) {
+    return res.send({
+      success: false,
+      message: "Invalid credentials",
+    });
+  }
+  res.send({
+    success: true,
+    message: "User logged in successfully",
+    user,
+  });
 };
 
 export default loginController;

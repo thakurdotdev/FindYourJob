@@ -1,7 +1,7 @@
-import Express from "express";
+import express from "express";
 import loginController from "../controllers/loginController.js";
-const route = Express.Router();
+const loginRoute = express.Router();
 
-route.post("/register", loginController);
+loginRoute.post("/login", loginController);
 
-export default route;
+export default loginRoute;
