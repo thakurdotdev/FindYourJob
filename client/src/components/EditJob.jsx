@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
+import Loader from "./Loader.jsx";
 
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
