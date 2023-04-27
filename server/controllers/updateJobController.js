@@ -3,10 +3,13 @@ import jobModel from "../models/jobModel.js";
 const updateJobController = async (req, res) => {
   try {
     const { id } = req.params;
-    const { position, workLocation } = req.body;
+    const { company, position, workLocation, locationType } = req.body;
 
-    if (!position || !workLocation) {
-      res.json("Please Provide All Details");
+    if (!company || !position || !workLocation || !locationType) {
+      return res.send({
+        success: false,
+        message: "Please Provide all details",
+      });
     }
 
     const job = await jobModel.findOne({ _id: id });
@@ -15,7 +18,12 @@ const updateJobController = async (req, res) => {
 
     const updatedJob = await jobModel.findByIdAndUpdate(
       { _id: id },
-      { position, workLocation }
+      {
+        company: company,
+        position: position,
+        workLocation: workLocation,
+        locationType: locationType,
+      }
     );
 
     res.status(200).json({
