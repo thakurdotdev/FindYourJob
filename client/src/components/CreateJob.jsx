@@ -14,7 +14,7 @@ const CreateJob = () => {
     e.preventDefault();
     try {
       const body = { company, position, workLocation, locationType };
-      await fetch("http://localhost:5000/addJobs", {
+      await fetch("https://job-portal-app-kzk0.onrender.com/addJobs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

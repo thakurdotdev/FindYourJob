@@ -8,7 +8,7 @@ const JobCard = ({
 
   const handleDelete = async () => {
     try {
-      await fetch(`http://localhost:5000/deleteJob/${id}`, {
+      await fetch(`https://job-portal-app-kzk0.onrender.com/deleteJob/${id}`, {
         method: "DELETE",
       });
       setNavigate(true);
