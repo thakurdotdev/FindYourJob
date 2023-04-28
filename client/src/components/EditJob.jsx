@@ -18,7 +18,9 @@ const EditJob = () => {
 
   const getJob = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/job/${id}`);
+      const response = await fetch(
+        `https://job-portal-app-kzk0.onrender.com/job/${id}`
+      );
       const jsonData = await response.json();
       const { company, position, workLocation, locationType } = jsonData.job;
       setCompany(company);
@@ -34,7 +36,7 @@ const EditJob = () => {
     e.preventDefault();
     try {
       const body = { company, position, workLocation, locationType };
-      await fetch(`http://localhost:5000/updateJob/${id}`, {
+      await fetch(`https://job-portal-app-kzk0.onrender.com/updateJob/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -47,7 +49,7 @@ const EditJob = () => {
 
   const handleDelete = async () => {
     try {
-      await fetch(`http://localhost:5000/deleteJob/${id}`, {
+      await fetch(`https://job-portal-app-kzk0.onrender.com/deleteJob/${id}`, {
         method: "DELETE",
       });
       setNavigate(true);

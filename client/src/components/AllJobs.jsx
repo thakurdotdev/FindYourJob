@@ -11,7 +11,9 @@ const AllJobs = () => {
 
   const getJobs = async () => {
     try {
-      const response = await fetch("http://localhost:5000/getJobs");
+      const response = await fetch(
+        "https://job-portal-app-kzk0.onrender.com/getJobs"
+      );
       const jsonData = await response.json();
       setJobs(jsonData.jobs);
       console.log(jsonData.jobs);
