@@ -1,6 +1,6 @@
 import express from "express";
 import addJobController from "../controllers/addJobController.js";
-import getJobController from "../controllers/getJobController.js";
+import getJobsController from "../controllers/getJobsController.js";
 import updateJobController from "../controllers/updateJobController.js";
 import deleteJobController from "../controllers/deleteJobController.js";
 import getOneJobController from "../controllers/getOneJobController.js";
@@ -9,7 +9,7 @@ const jobRoute = express.Router();
 
 jobRoute.post("/addJobs", addJobController);
 
-jobRoute.get("/getJobs", getJobController);
+jobRoute.get("/getJobs", getJobsController);
 
 jobRoute.patch("/updateJob/:id", updateJobController);
 

@@ -1,6 +1,6 @@
 import jobModel from "../models/jobModel.js";
 
-const getJobController = async (req, res) => {
+const getJobsController = async (req, res) => {
   try {
     const jobs = await jobModel.find({});
 
@@ -18,4 +18,4 @@ const getJobController = async (req, res) => {
   }
 };
 
-export default getJobController;
+export default getJobsController;

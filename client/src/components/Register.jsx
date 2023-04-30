@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import Logo from "../assets/FYJLogo.png";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 const Register = () => {
@@ -37,11 +37,9 @@ const Register = () => {
     <div className="flex flex-col items-center justify-center min-h-[83vh]">
       <Card color="transparent" shadow={true} className="items-center p-8">
         <Typography variant="h4" color="blue-gray">
-          Register
+          Register To
         </Typography>
-        <Typography color="gray" className="mt-1 font-normal">
-          Enter your details to register.
-        </Typography>
+        <img src={Logo} alt="Logo" className="w-44" />
         <form
           onSubmit={register}
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"

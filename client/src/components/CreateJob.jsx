@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import Logo from "../assets/FYJLogo.png";
 
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
@@ -35,11 +36,13 @@ const CreateJob = () => {
       shadow={false}
       className="p-10 flex justify-center items-center min-h-[82vh]"
     >
+      <img src={Logo} alt="Logo" className="w-32" />
+
       <Typography variant="h4" color="blue-gray">
         Add a new job
       </Typography>
       <Typography color="gray" className="mt-1 font-normal">
-        Fill in the information below to get started.
+        Fill in the details of the job you want to add
       </Typography>
       <form
         onSubmit={handleAddJob}
