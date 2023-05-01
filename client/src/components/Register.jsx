@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
@@ -13,16 +13,16 @@ const Register = () => {
     e.preventDefault();
     try {
       const body = { name, email, password };
-      const response = await fetch("http://localhost:5000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        "https://job-portal-app-kzk0.onrender.com/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
       const jsonData = await response.json();
-      if (jsonData.token) {
-        localStorage.setItem("token", jsonData.token);
-        setRedirect(true);
-      }
+      setRedirect(true);
       console.log(jsonData);
     } catch (err) {
       console.error(err.message);
@@ -30,12 +30,12 @@ const Register = () => {
   };
 
   if (redirect) {
-    return <Link to="/login" />;
+    return <Navigate to={"/login"} />;
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[83vh]">
-      <Card color="transparent" shadow={true} className="items-center p-8">
+    <div className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100">
+      <Card color="white" shadow={true} className="items-center p-8">
         <Typography variant="h4" color="blue-gray">
           Register To
         </Typography>
@@ -48,20 +48,17 @@ const Register = () => {
             <Input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              size="lg"
               label="Name"
             />
             <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              size="lg"
               label="Email"
             />
             <Input
               value={password}
               onChange={(e) => setPassowrd(e.target.value)}
               type="password"
-              size="lg"
               label="Password"
             />
           </div>
@@ -72,7 +69,7 @@ const Register = () => {
             Already have an account?
             <Link
               to={"/login"}
-              className="font-medium text-blue-500 transition-colors hover:text-blue-700"
+              className="font-medium ml-2 text-blue-500 transition-colors hover:text-blue-700"
             >
               Login
             </Link>

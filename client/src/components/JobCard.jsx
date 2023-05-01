@@ -23,7 +23,7 @@ const JobCard = ({
 
   return (
     <div className="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
-      <div className="bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg rounded-lg overflow-hidden">
+      <div className="bg-gradient-to-br from-indigo-400 to-purple-400 shadow-lg rounded-lg overflow-hidden">
         <div className="px-6 my-5">
           <div className="flex items-center justify-between">
             <p className="text-2xl font-bold font-heading text-white">

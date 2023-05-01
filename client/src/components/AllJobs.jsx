@@ -27,7 +27,7 @@ const AllJobs = () => {
   }
 
   return (
-    <section className="py-24 bg-blueGray-50 overflow-hidden min-h-screen">
+    <section className="py-24 bg-blueGray-50 overflow-hidden min-h-[83vh] bg-gray-100">
       <div className="container px-4 mx-auto">
         <h2 className="mb-5 text-4xl text-center font-bold font-heading font-heading tracking-px-n leading-none">
           Jobs

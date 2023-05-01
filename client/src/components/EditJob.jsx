@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import Loader from "./Loader.jsx";
 
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
@@ -63,63 +62,54 @@ const EditJob = () => {
   }
 
   return (
-    <Card
-      color="transparent"
-      shadow={false}
-      className="p-10 flex justify-center items-center min-h-[82vh]"
-    >
-      <Typography variant="h4" color="blue-gray">
-        Edit job
-      </Typography>
-
-      <Typography color="gray" className="mt-1 font-normal">
-        Enter your details to edit job.
-      </Typography>
-      <form
-        onSubmit={editJob}
-        className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+    <div className="flex justify-center items-center min-h-[83vh] bg-gray-100">
+      <Card
+        color="white"
+        shadow={true}
+        className="p-10 flex justify-center items-center"
       >
-        <div className="mb-4 flex flex-col gap-6">
-          <Input
-            value={company}
-            onChange={(e) => setCompany(e.target.value)}
-            size="lg"
-            label="Company"
-          />
-          <Input
-            value={position}
-            onChange={(e) => setPosition(e.target.value)}
-            size="lg"
-            label="Position"
-          />
-          <Input
-            value={workLocation}
-            onChange={(e) => setWorkLocation(e.target.value)}
-            size="lg"
-            label="workLocation"
-          />
-          <Input
-            value={locationType}
-            onChange={(e) => setLocationType(e.target.value)}
-            size="lg"
-            label="locationType"
-          />
-        </div>
-        <Button type="submit" className="mt-6" fullWidth>
-          Edit
-        </Button>
-        <Button
-          onClick={handleDelete}
-          color="red"
-          buttonType="outline"
-          ripple="dark"
-          className="mt-6"
-          fullWidth
+        <Typography variant="h4" color="blue-gray">
+          Edit Job
+        </Typography>
+
+        <Typography color="gray" className="mt-1 font-normal">
+          Change the details you want to edit.
+        </Typography>
+        <form
+          onSubmit={editJob}
+          className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
         >
-          Delete
-        </Button>
-      </form>
-    </Card>
+          <div className="mb-4 flex flex-col gap-6">
+            <Input
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              label="Company"
+            />
+            <Input
+              value={position}
+              onChange={(e) => setPosition(e.target.value)}
+              label="Position"
+            />
+            <Input
+              value={workLocation}
+              onChange={(e) => setWorkLocation(e.target.value)}
+              label="workLocation"
+            />
+            <Input
+              value={locationType}
+              onChange={(e) => setLocationType(e.target.value)}
+              label="locationType"
+            />
+          </div>
+          <Button type="submit" className="mt-6" fullWidth>
+            Edit
+          </Button>
+          <Button onClick={handleDelete} color="red" className="mt-6" fullWidth>
+            Delete
+          </Button>
+        </form>
+      </Card>
+    </div>
   );
 };
 
