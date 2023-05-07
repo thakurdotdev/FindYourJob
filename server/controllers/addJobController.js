@@ -1,4 +1,5 @@
 import jobModel from "../models/jobModel.js";
+import jwt from "jsonwebtoken";
 
 const addJobController = async (req, res) => {
   try {
@@ -11,22 +12,36 @@ const addJobController = async (req, res) => {
       });
     }
 
-    const newJob = {
-      company: company,
-      position: position,
-      workLocation: workLocation,
-      locationType: locationType,
-    };
+    const { token } = req.cookies;
 
-    await jobModel.create(newJob);
+    console.log(token);
 
-    res.status(200).send({
-      success: true,
-      message: "Job Created Successfully",
-      newJob,
+    if (!token) {
+      return res.status(403).send({
+        success: false,
+        message: "Please login first",
+      });
+    }
+
+    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
+      if (err) {
+        res.status(401).json("Not authorized");
+      }
+
+      const job = await jobModel.create({
+        company,
+        position,
+        workLocation,
+        locationType,
+        author: info.id,
+      });
+
+      res.status(200).json({
+        success: true,
+        message: "Job added successfully",
+        job,
+      });
     });
-
-    console.log(newJob);
   } catch (err) {
     res.status(400).send({
       message: "Error in addJob controller",

@@ -19,6 +19,10 @@ const jobSchema = new mongoose.Schema(
       type: String,
       default: "Remote",
     },
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
   },
   { timestamps: true }
 );

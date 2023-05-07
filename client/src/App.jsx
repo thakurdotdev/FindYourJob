@@ -6,14 +6,15 @@ import Footer from "./components/Footer";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import EditJob from "./components/EditJob";
+import { UserContextProvider } from "./Context/userContext";
 
 const App = () => {
   return (
-    <>
+    <UserContextProvider>
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </UserContextProvider>
   );
 };
 

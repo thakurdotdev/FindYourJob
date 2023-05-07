@@ -2,9 +2,13 @@ import jobModel from "../models/jobModel.js";
 
 const getJobsController = async (req, res) => {
   try {
-    const jobs = await jobModel.find({});
+    const jobs = await jobModel
+      .find({})
+      .populate("author", ["name"])
+      .sort({ createdAt: -1 })
+      .limit(30);
 
-    res.status(200).send({
+    res.status(200).json({
       success: true,
       message: "Jobs fetched successfully",
       jobs,

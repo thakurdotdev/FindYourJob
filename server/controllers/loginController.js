@@ -1,5 +1,6 @@
 import userModal from "../models/userModal.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const loginController = async (req, res) => {
   const { email, password } = req.body;
@@ -13,23 +14,30 @@ const loginController = async (req, res) => {
 
   const user = await userModal.findOne({ email });
   if (!user) {
-    return res.send({
-      success: false,
-      message: "User not found",
-    });
-  }
-  const isMatch = bcrypt.compareSync(password, user.password);
-  if (!isMatch) {
-    return res.send({
+    return res.status(401).send({
       success: false,
       message: "Invalid credentials",
     });
   }
-  res.send({
-    success: true,
-    message: "User logged in successfully",
-    user,
-  });
+  const isMatch = bcrypt.compareSync(password, user.password);
+  if (!isMatch) {
+    return res.status(401).send({
+      success: false,
+      message: "Invalid credentials",
+    });
+  }
+
+  if (isMatch) {
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+    return res.cookie("token", token, { httpOnly: true }).send({
+      success: true,
+      message: "Login successfully",
+      id: user._id,
+      email,
+    });
+  }
 };
 
 export default loginController;

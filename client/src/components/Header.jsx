@@ -1,32 +1,61 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Button,
   IconButton,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
 } from "@material-tailwind/react";
+import { UserContext } from "../Context/userContext";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 const Header = () => {
-  const [openNav, setOpenNav] = React.useState(false);
+  const [openNav, setOpenNav] = useState(false);
+  const { user, setUser } = useContext(UserContext);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    fetch("http://localhost:5000/profile", {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
+  const Logout = async () => {
+    try {
+      setUser(null);
+      const response = await fetch("http://localhost:5000/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      if (response.status === 200) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const id = user?.id;
+  useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
-
-  const navList = (
-    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row items-center lg:gap-6">
-      <Link to="/addjob">
-        <Button color="amber" size="sm" ripple={true} variant="gradient">
-          Create Job
-        </Button>
-      </Link>
-    </ul>
-  );
 
   return (
     <>
@@ -36,27 +65,58 @@ const Header = () => {
             <img src={Logo} alt="" className="w-44" />
           </Link>
           <div className="flex items-center gap-4">
-            <div className="mr-4 hidden lg:block">{navList}</div>
+            {id && (
+              <>
+                <Link to={"/addjob"}>
+                  <Button
+                    variant="text"
+                    size="sm"
+                    className="hidden lg:inline-block"
+                  >
+                    Add JOB
+                  </Button>
+                </Link>
 
-            <Link to={"/register"}>
-              <Button
-                variant="gradient"
-                size="sm"
-                className="hidden lg:inline-block"
-              >
-                Register
-              </Button>
-            </Link>
+                <Menu className="hidden lg:inline-block">
+                  <MenuHandler className="hidden lg:inline-block">
+                    <Button
+                      variant="text"
+                      size="sm"
+                      className="p-2 rounded-full hover:bg-gray-300"
+                    >
+                      <UserCircleIcon className="h-8 w-8" />
+                    </Button>
+                  </MenuHandler>
+                  <MenuList>
+                    <MenuItem onClick={Logout}>Logout</MenuItem>
+                  </MenuList>
+                </Menu>
+              </>
+            )}
 
-            <Link to={"/login"}>
-              <Button
-                variant="gradient"
-                size="sm"
-                className="hidden lg:inline-block"
-              >
-                Login
-              </Button>
-            </Link>
+            {!id && (
+              <>
+                <Link to={"/register"}>
+                  <Button
+                    variant="gradient"
+                    size="sm"
+                    className="hidden lg:inline-block"
+                  >
+                    Register
+                  </Button>
+                </Link>
+
+                <Link to={"/login"}>
+                  <Button
+                    variant="gradient"
+                    size="sm"
+                    className="hidden lg:inline-block"
+                  >
+                    Login
+                  </Button>
+                </Link>
+              </>
+            )}
 
             <IconButton
               variant="text"
@@ -97,21 +157,54 @@ const Header = () => {
             </IconButton>
           </div>
         </div>
-        <MobileNav open={openNav}>
-          {navList}
-          <hr className="my-4 border-blue-gray-50" />
+        <Collapse open={openNav} className="">
+          <hr />
+          {id && (
+            <>
+              <Link to={"/register"}>
+                <Button
+                  variant="outlined"
+                  size="sm"
+                  fullWidth
+                  className="my-10"
+                >
+                  <span>Add Job</span>
+                </Button>
+              </Link>
+              <Link to={"/login"}>
+                <Button
+                  variant="outlined"
+                  size="sm"
+                  fullWidth
+                  className="my-5"
+                  onClick={Logout}
+                >
+                  <span>Logout</span>
+                </Button>
+              </Link>
+            </>
+          )}
 
-          <Link to={"/register"}>
-            <Button variant="gradient" size="sm" fullWidth className="my-5">
-              <span>Register</span>
-            </Button>
-          </Link>
-          <Link to={"/login"}>
-            <Button variant="gradient" size="sm" fullWidth className="my-5">
-              <span>Login</span>
-            </Button>
-          </Link>
-        </MobileNav>
+          {!id && (
+            <>
+              <Link to={"/register"}>
+                <Button
+                  variant="gradient"
+                  size="sm"
+                  fullWidth
+                  className="my-10"
+                >
+                  <span>Register</span>
+                </Button>
+              </Link>
+              <Link to={"/login"}>
+                <Button variant="gradient" size="sm" fullWidth className="my-5">
+                  <span>Login</span>
+                </Button>
+              </Link>
+            </>
+          )}
+        </Collapse>
       </Navbar>
     </>
   );
