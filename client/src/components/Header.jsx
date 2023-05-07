@@ -19,7 +19,7 @@ const Header = () => {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    fetch("http://localhost:5000/profile", {
+    fetch("https://job-portal-app-kzk0.onrender.com/profile", {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -34,13 +34,16 @@ const Header = () => {
   const Logout = async () => {
     try {
       setUser(null);
-      const response = await fetch("http://localhost:5000/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://job-portal-app-kzk0.onrender.com/logout",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
       if (response.status === 200) {
         window.location.reload();
       }
@@ -96,16 +99,6 @@ const Header = () => {
 
             {!id && (
               <>
-                <Link to={"/register"}>
-                  <Button
-                    variant="gradient"
-                    size="sm"
-                    className="hidden lg:inline-block"
-                  >
-                    Register
-                  </Button>
-                </Link>
-
                 <Link to={"/login"}>
                   <Button
                     variant="gradient"
@@ -113,6 +106,15 @@ const Header = () => {
                     className="hidden lg:inline-block"
                   >
                     Login
+                  </Button>
+                </Link>
+                <Link to={"/register"}>
+                  <Button
+                    variant="outlined"
+                    size="sm"
+                    className="hidden lg:inline-block"
+                  >
+                    Register
                   </Button>
                 </Link>
               </>
