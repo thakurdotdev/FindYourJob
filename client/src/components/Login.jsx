@@ -1,12 +1,17 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, Navigate } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
+
+import { UserContext } from "../Context/userContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
+  const [message, showMessage] = useState(false);
 
+  const { setUser } = useContext(UserContext);
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -15,11 +20,25 @@ const Login = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
+        credentials: "include",
+      }).then((res) => {
+        if (res.status === 200) {
+          res.json().then((data) => {
+            setUser(data);
+            setRedirect(true);
+          });
+        } else {
+          showMessage(true);
+        }
       });
     } catch (err) {
       console.error(err.message);
     }
   };
+
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100">
@@ -44,6 +63,13 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div>
+              {message ? (
+                <p className="text-red-500 text-center mt-2">
+                  Invalid Credentials
+                </p>
+              ) : null}
+            </div>
           </div>
           <Button className="mt-6" fullWidth type="submit">
             Login

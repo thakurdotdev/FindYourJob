@@ -16,7 +16,7 @@ const AllJobs = () => {
       );
       const jsonData = await response.json();
       setJobs(jsonData.jobs);
-      console.log(jsonData.jobs);
+      console.log(jsonData);
     } catch (err) {
       console.error(err.message);
     }
@@ -48,6 +48,8 @@ const AllJobs = () => {
                 workLocation: job.workLocation,
                 locationType: job.locationType,
                 id: job._id,
+                author: job?.author?.name,
+                authorId: job?.author?._id,
               }}
             />
           ))}

@@ -2,13 +2,7 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
 
-import {
-  Card,
-  Input,
-  Button,
-  Typography,
-  Alert,
-} from "@material-tailwind/react";
+import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 const CreateJob = () => {
   const [company, setCompany] = useState("");
@@ -16,6 +10,7 @@ const CreateJob = () => {
   const [workLocation, setWorkLocation] = useState("");
   const [locationType, setLocationType] = useState("");
   const [navigate, setNavigate] = useState(false);
+  const [message, showMessage] = useState(false);
 
   const handleAddJob = async (e) => {
     e.preventDefault();
@@ -25,8 +20,14 @@ const CreateJob = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
+        credentials: "include",
+      }).then((res) => {
+        if (res.status === 200) {
+          setNavigate(true);
+        } else {
+          showMessage(true);
+        }
       });
-      setNavigate(true);
     } catch (err) {
       console.error(err.message);
     }
@@ -84,6 +85,13 @@ const CreateJob = () => {
           <Button type="submit" className="mt-6" fullWidth>
             Add job
           </Button>
+          <div>
+            {message ? (
+              <p className="text-red-500 text-center mt-2">
+                Please Login to Add the job
+              </p>
+            ) : null}
+          </div>
         </form>
       </Card>
     </div>
