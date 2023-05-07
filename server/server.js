@@ -12,12 +12,10 @@ dotenv.config();
 const app = Express();
 app.use(Express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "https://job-portal-app-kzk0.onrender.com",
-    credentials: true,
-  })
-);
+app.use((req, res) => {
+  res.header("Access-Control-Allow-Origin", "https://landyourjob.netlify.app");
+  res.header("Access-Control-Allow-Credentials", true);
+});
 app.use(authRoute, jobRoute);
 
 DataBase();
