@@ -12,10 +12,12 @@ dotenv.config();
 const app = Express();
 app.use(Express.json());
 app.use(cookieParser());
-app.use((req, res) => {
-  res.header("Access-Control-Allow-Origin", "https://landyourjob.netlify.app");
-  res.header("Access-Control-Allow-Credentials", true);
-});
+app.use(
+  cors({
+    origin: "https://landyourjob.netlify.app/",
+    credentials: true,
+  })
+);
 app.use(authRoute, jobRoute);
 
 DataBase();
