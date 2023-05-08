@@ -45,7 +45,7 @@ const Header = () => {
       );
       if (response.status === 200) {
         setUser(null);
-        window.location.reload();
+        window.location.href = "/";
       }
     } catch (error) {
       console.error(error);
@@ -53,6 +53,8 @@ const Header = () => {
   };
 
   const id = user?.id;
+  console.log(user);
+
   useEffect(() => {
     window.addEventListener(
       "resize",

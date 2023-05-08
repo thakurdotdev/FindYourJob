@@ -9,7 +9,7 @@ authRoute.post("/login", loginController);
 
 authRoute.post("/logout", (req, res) => {
   try {
-    res.clearCookie("token", { path: "/" });
+    res.clearCookie("token");
     res.locals.user = null;
     res.json("Logout Successfully");
   } catch (error) {
