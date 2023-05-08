@@ -28,9 +28,7 @@ const loginController = async (req, res) => {
   }
 
   if (isMatch) {
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {});
     return res
       .cookie("token", token, {
         expires: new Date(Date.now() + 86400000), // 1 day

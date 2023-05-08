@@ -8,7 +8,14 @@ authRoute.post("/register", registerController);
 authRoute.post("/login", loginController);
 
 authRoute.post("/logout", (req, res) => {
-  res.clearCookie("token").json("Logout Successfully");
+  // clear the token cookie
+  res.clearCookie("token", { path: "/" });
+
+  // expire the JWT token on the server side
+  res.locals.user = null;
+
+  // send response
+  res.json("Logout Successfully");
 });
 
 authRoute.get("/profile", (req, res) => {
