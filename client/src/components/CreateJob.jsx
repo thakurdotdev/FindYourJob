@@ -79,13 +79,6 @@ const CreateJob = () => {
           <Button type="submit" className="mt-6" fullWidth>
             Add job
           </Button>
-          <div>
-            {message ? (
-              <p className="text-red-500 text-center mt-2">
-                Please Login to Add the job
-              </p>
-            ) : null}
-          </div>
         </form>
       </Card>
     </div>
