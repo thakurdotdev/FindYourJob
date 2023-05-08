@@ -28,7 +28,7 @@ const addJobController = async (req, res) => {
         res.status(401).json("Not authorized");
       }
 
-      const job = await jobModel.create({
+      await jobModel.create({
         company,
         position,
         workLocation,
@@ -39,7 +39,6 @@ const addJobController = async (req, res) => {
       res.status(200).json({
         success: true,
         message: "Job added successfully",
-        job,
       });
     });
   } catch (err) {

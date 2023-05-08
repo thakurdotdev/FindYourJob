@@ -10,7 +10,6 @@ const CreateJob = () => {
   const [workLocation, setWorkLocation] = useState("");
   const [locationType, setLocationType] = useState("");
   const [navigate, setNavigate] = useState(false);
-  const [message, showMessage] = useState(false);
 
   const handleAddJob = async (e) => {
     e.preventDefault();
@@ -21,13 +20,8 @@ const CreateJob = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
         credentials: "include",
-      }).then((res) => {
-        if (res.status === 200) {
-          setNavigate(true);
-        } else {
-          showMessage(true);
-        }
       });
+      setNavigate(true);
     } catch (err) {
       console.error(err.message);
     }

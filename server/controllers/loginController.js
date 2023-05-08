@@ -31,11 +31,21 @@ const loginController = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
-    return res.cookie("token", token).status(200).send({
-      success: true,
-      message: "User logged in successfully",
-      token,
-    });
+    return res
+      .cookie("token", token, {
+        expires: new Date(Date.now() + 86400000), // 1 day
+        httpOnly: true,
+        path: "/",
+        sameSite: "none",
+        secure: true,
+      })
+      .status(200)
+      .send({
+        success: true,
+        message: "User logged in successfully",
+        id: user._id,
+        email: user.email,
+      });
   }
 };
 
