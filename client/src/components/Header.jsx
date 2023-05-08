@@ -33,7 +33,6 @@ const Header = () => {
 
   const Logout = async () => {
     try {
-      setUser(null);
       const response = await fetch(
         "https://job-portal-app-kzk0.onrender.com/logout",
         {
@@ -45,6 +44,7 @@ const Header = () => {
         }
       );
       if (response.status === 200) {
+        setUser(null);
         window.location.reload();
       }
     } catch (error) {

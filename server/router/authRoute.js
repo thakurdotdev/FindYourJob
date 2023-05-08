@@ -8,14 +8,17 @@ authRoute.post("/register", registerController);
 authRoute.post("/login", loginController);
 
 authRoute.post("/logout", (req, res) => {
-  // clear the token cookie
-  res.clearCookie("token", { path: "/" });
-
-  // expire the JWT token on the server side
-  res.locals.user = null;
-
-  // send response
-  res.json("Logout Successfully");
+  try {
+    res.clearCookie("token", { path: "/" });
+    res.locals.user = null;
+    res.json("Logout Successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong while logging out",
+    });
+  }
 });
 
 authRoute.get("/profile", (req, res) => {
