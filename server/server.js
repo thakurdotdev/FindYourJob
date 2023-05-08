@@ -14,7 +14,7 @@ app.use(Express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://landyourjob.netlify.app",
+    origin: ["http://localhost:5173", "https://landyourjob.netlify.app"],
     credentials: true,
   })
 );

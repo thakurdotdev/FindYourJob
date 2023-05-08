@@ -163,7 +163,7 @@ const Header = () => {
           <hr />
           {id && (
             <>
-              <Link to={"/register"}>
+              <Link to={"/addjob"}>
                 <Button
                   variant="outlined"
                   size="sm"
