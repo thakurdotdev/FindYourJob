@@ -53,7 +53,6 @@ const Header = () => {
   };
 
   const id = user?.id;
-  console.log(user);
 
   useEffect(() => {
     window.addEventListener(

@@ -9,15 +9,10 @@ authRoute.post("/login", loginController);
 
 authRoute.post("/logout", (req, res) => {
   try {
-    res.clearCookie("token");
-    res.locals.user = null;
-    res.json("Logout Successfully");
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: "Something went wrong while logging out",
-    });
+    res.clearCookie("token", { path: "/" });
+    res.status(200).json("Logged out successfully");
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

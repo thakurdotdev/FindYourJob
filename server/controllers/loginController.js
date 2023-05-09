@@ -33,7 +33,6 @@ const loginController = async (req, res) => {
       .cookie("token", token, {
         expires: new Date(Date.now() + 86400000), // 1 day
         httpOnly: true,
-        path: "/",
         sameSite: "none",
         secure: true,
       })
