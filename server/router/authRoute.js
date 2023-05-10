@@ -9,7 +9,12 @@ authRoute.post("/login", loginController);
 
 authRoute.post("/logout", (req, res) => {
   try {
-    res.clearCookie("token", { path: "/" });
+    res.clearCookie("token", {
+      domain: "job-portal-app-kzk0.onrender.com",
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+    });
     res.status(200).json("Logged out successfully");
   } catch (err) {
     res.status(500).json(err);
