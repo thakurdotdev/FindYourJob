@@ -16,21 +16,24 @@ const Login = () => {
     e.preventDefault();
     try {
       const body = { email, password };
-      await fetch("https://job-portal-app-kzk0.onrender.com/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-        credentials: "include",
-      }).then((res) => {
-        if (res.status === 200) {
-          res.json().then((data) => {
-            setUser(data);
-            setRedirect(true);
-          });
-        } else {
-          showMessage(true);
+      const response = await fetch(
+        "https://job-portal-app-kzk0.onrender.com/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+          credentials: "include",
         }
-      });
+      );
+      if (response.status === 200) {
+        const data = await response.json();
+        setUser(data);
+        setTimeout(() => {
+          setRedirect(true);
+        }, 100);
+      } else {
+        showMessage(true);
+      }
     } catch (err) {
       console.error(err.message);
     }
