@@ -31,6 +31,7 @@ const loginController = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {});
     return res
       .cookie("token", token, {
+        domain: "landyourjob.netlify.app",
         expires: new Date(Date.now() + 86400000), // 1 day
         httpOnly: true,
         sameSite: "none",
