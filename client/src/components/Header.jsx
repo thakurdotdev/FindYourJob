@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/FYJLogo.png";
+import { UserContext } from "../Context/userContext";
+
 import {
   Navbar,
   Collapse,
@@ -11,7 +12,7 @@ import {
   MenuList,
   MenuItem,
 } from "@material-tailwind/react";
-import { UserContext } from "../Context/userContext";
+import Logo from "../assets/FYJLogo.png";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 
 const Header = () => {
@@ -166,7 +167,7 @@ const Header = () => {
             <>
               <Link to={"/addjob"}>
                 <Button
-                  variant="outlined"
+                  variant="gradient"
                   size="sm"
                   fullWidth
                   className="my-10"
@@ -176,7 +177,7 @@ const Header = () => {
               </Link>
               <Link to={"/login"}>
                 <Button
-                  variant="outlined"
+                  variant="gradient"
                   size="sm"
                   fullWidth
                   className="my-5"
