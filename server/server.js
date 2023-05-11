@@ -16,8 +16,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://landyourjob.netlify.app",
-      "https://findyourjob.vercel.app",
+      "https://landyourjob.netlify.app",  
     ],
     credentials: true,
   })
