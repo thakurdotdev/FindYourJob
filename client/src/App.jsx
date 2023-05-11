@@ -7,6 +7,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import EditJob from "./components/EditJob";
 import { UserContextProvider } from "./Context/userContext";
+import JobDetails from "./components/JobDetails";
 
 const App = () => {
   return (
@@ -28,6 +29,9 @@ const appRouter = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
       { path: "/edit/:id", element: <EditJob /> },
+      { path: "/job/:id", element: <JobDetails /> },
+
+      { path: "*", element: <h1>Not Found</h1> },
     ],
   },
 ]);

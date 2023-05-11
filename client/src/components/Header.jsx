@@ -13,7 +13,7 @@ import {
   MenuItem,
 } from "@material-tailwind/react";
 import Logo from "../assets/FYJLogo.png";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -75,10 +75,10 @@ const Header = () => {
                 <Link to={"/addjob"}>
                   <Button
                     variant="text"
-                    size="sm"
-                    className="hidden lg:inline-block"
+                    className="hidden lg:flex items-center gap-2"
                   >
-                    Add JOB
+                    <PencilSquareIcon className="h-5 w-5" />
+                    Post a Job
                   </Button>
                 </Link>
 
@@ -103,7 +103,7 @@ const Header = () => {
               <>
                 <Link to={"/login"}>
                   <Button
-                    variant="gradient"
+                    variant="text"
                     size="sm"
                     className="hidden lg:inline-block"
                   >
@@ -112,7 +112,8 @@ const Header = () => {
                 </Link>
                 <Link to={"/register"}>
                   <Button
-                    variant="outlined"
+                    variant="gradient"
+                    color="blue"
                     size="sm"
                     className="hidden lg:inline-block"
                   >

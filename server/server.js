@@ -17,7 +17,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://landyourjob.netlify.app",
-      "https://findyourjob.vercel.app/",
+      "https://findyourjob.vercel.app",
     ],
     credentials: true,
   })

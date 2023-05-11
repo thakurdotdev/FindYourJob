@@ -64,7 +64,12 @@ const JobCard = ({
                 </Button>
               </div>
             ) : (
-              ""
+              <Link to={`/job/${id}`}>
+                <Button variant="text" className="flex items-center gap-2">
+                  View Details
+                  <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
+                </Button>
+              </Link>
             )}
           </div>
         </div>
