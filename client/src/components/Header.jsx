@@ -13,7 +13,11 @@ import {
   MenuItem,
 } from "@material-tailwind/react";
 import Logo from "../assets/FYJLogo.png";
-import { PencilSquareIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import {
+  BriefcaseIcon,
+  PencilSquareIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -63,155 +67,161 @@ const Header = () => {
   }, []);
 
   return (
-    <>
-      <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
-        <div className="flex items-center justify-around text-blue-gray-900">
-          <Link to={"/"}>
-            <img src={Logo} alt="" className="w-44" />
-          </Link>
-          <div className="flex items-center gap-4">
-            {id && (
-              <>
-                <Link to={"/addjob"}>
-                  <Button
-                    variant="text"
-                    className="hidden lg:flex items-center gap-2"
-                  >
-                    <PencilSquareIcon className="h-5 w-5" />
-                    Post a Job
-                  </Button>
-                </Link>
-
-                <Menu className="hidden lg:inline-block">
-                  <MenuHandler className="hidden lg:inline-block">
-                    <Button
-                      variant="text"
-                      size="sm"
-                      className="p-2 rounded-full hover:bg-gray-300"
-                    >
-                      <UserCircleIcon className="h-8 w-8" />
-                    </Button>
-                  </MenuHandler>
-                  <MenuList>
-                    <MenuItem onClick={Logout}>Logout</MenuItem>
-                  </MenuList>
-                </Menu>
-              </>
-            )}
-
-            {!id && (
-              <>
-                <Link to={"/login"}>
-                  <Button
-                    variant="text"
-                    size="sm"
-                    className="hidden lg:inline-block"
-                  >
-                    Login
-                  </Button>
-                </Link>
-                <Link to={"/register"}>
-                  <Button
-                    variant="gradient"
-                    color="blue"
-                    size="sm"
-                    className="hidden lg:inline-block"
-                  >
-                    Register
-                  </Button>
-                </Link>
-              </>
-            )}
-
-            <IconButton
-              variant="text"
-              className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-              ripple={false}
-              onClick={() => setOpenNav(!openNav)}
-            >
-              {openNav ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  className="h-6 w-6"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              )}
-            </IconButton>
-          </div>
-        </div>
-        <Collapse open={openNav} className="">
-          <hr />
+    <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
+      <div className="flex items-center justify-around text-blue-gray-900">
+        <Link to={"/"}>
+          <img src={Logo} alt="" className="w-44" />
+        </Link>
+        <div className="flex items-center gap-4">
           {id && (
             <>
               <Link to={"/addjob"}>
                 <Button
-                  variant="gradient"
-                  size="sm"
-                  fullWidth
-                  className="my-10"
+                  variant="text"
+                  className="hidden lg:flex items-center gap-2"
                 >
-                  <span>Add Job</span>
+                  <PencilSquareIcon className="h-5 w-5" />
+                  Post a Job
                 </Button>
               </Link>
-              <Link to={"/login"}>
+              <Link to={"/jobs"}>
                 <Button
-                  variant="gradient"
-                  size="sm"
-                  fullWidth
-                  className="my-5"
-                  onClick={Logout}
+                  variant="text"
+                  className="hidden lg:flex items-center gap-2"
                 >
-                  <span>Logout</span>
+                  <BriefcaseIcon className="h-5 w-5" />
+                  Jobs
                 </Button>
               </Link>
+
+              <Menu className="hidden lg:inline-block">
+                <MenuHandler className="hidden lg:inline-block">
+                  <Button
+                    variant="text"
+                    size="sm"
+                    className="p-2 rounded-full hover:bg-gray-300"
+                  >
+                    <UserCircleIcon className="h-8 w-8" />
+                  </Button>
+                </MenuHandler>
+                <MenuList>
+                  <MenuItem onClick={Logout}>Logout</MenuItem>
+                </MenuList>
+              </Menu>
             </>
           )}
 
           {!id && (
             <>
-              <Link to={"/register"}>
+              <Link to={"/jobs"}>
                 <Button
-                  variant="gradient"
-                  size="sm"
-                  fullWidth
-                  className="my-10"
+                  variant="text"
+                  className="hidden lg:flex items-center gap-2"
                 >
-                  <span>Register</span>
+                  <BriefcaseIcon className="h-5 w-5" />
+                  Jobs
                 </Button>
               </Link>
               <Link to={"/login"}>
-                <Button variant="gradient" size="sm" fullWidth className="my-5">
-                  <span>Login</span>
+                <Button
+                  variant="text"
+                  size="sm"
+                  className="hidden lg:inline-block"
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link to={"/register"}>
+                <Button
+                  variant="gradient"
+                  color="blue"
+                  size="sm"
+                  className="hidden lg:inline-block"
+                >
+                  Register
                 </Button>
               </Link>
             </>
           )}
-        </Collapse>
-      </Navbar>
-    </>
+
+          <IconButton
+            variant="text"
+            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+            ripple={false}
+            onClick={() => setOpenNav(!openNav)}
+          >
+            {openNav ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                className="h-6 w-6"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
+          </IconButton>
+        </div>
+      </div>
+      <Collapse open={openNav} className="">
+        <hr />
+        {id && (
+          <>
+            <Link to={"/addjob"}>
+              <Button variant="gradient" size="sm" fullWidth className="my-10">
+                <span>Add Job</span>
+              </Button>
+            </Link>
+            <Link to={"/login"}>
+              <Button
+                variant="gradient"
+                size="sm"
+                fullWidth
+                className="my-5"
+                onClick={Logout}
+              >
+                <span>Logout</span>
+              </Button>
+            </Link>
+          </>
+        )}
+
+        {!id && (
+          <>
+            <Link to={"/register"}>
+              <Button variant="gradient" size="sm" fullWidth className="my-10">
+                <span>Register</span>
+              </Button>
+            </Link>
+            <Link to={"/login"}>
+              <Button variant="gradient" size="sm" fullWidth className="my-5">
+                <span>Login</span>
+              </Button>
+            </Link>
+          </>
+        )}
+      </Collapse>
+    </Navbar>
   );
 };
 

@@ -3,7 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import Loader from "./Loader";
 
 import { Button, Card, Typography } from "@material-tailwind/react";
-import { ArrowLeftIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowLeftIcon,
+  ClockIcon,
+  DeviceTabletIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/outline";
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -24,10 +29,16 @@ const JobDetails = () => {
     return <Loader />;
   }
 
+  const date = new Date(job.createdAt).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
-    <div className="flex flex-col-reverse md:flex-row w-full justify-center items-center">
-      <div className="w-3/4 md:w-1/2 px-4 my-10">
-        <Link to={"/"}>
+    <div className="flex flex-col-reverse md:flex-row w-full md:min-h-[72vh] justify-center items-center my-10">
+      <div className="w-[90%] md:w-1/2 px-4">
+        <Link to={"/jobs"}>
           <Button variant="text" className="flex items-center gap-2 my-2">
             <ArrowLeftIcon strokeWidth={2} className="h-5 w-5" />
             All Jobs
@@ -63,13 +74,13 @@ const JobDetails = () => {
           technological movement. engineering team.
         </Typography>
       </div>
-      <Card shadow={true} className="lg:w-60 flex flex-col bg-gray-50 p-10">
-        <Typography variant="h4" className="mx-auto">
+      <Card shadow={true} className="w-[90%] lg:w-60 flex flex-col p-10">
+        <Typography variant="h4" color="black" className="mx-auto mb-5">
           {job?.company}
         </Typography>
         <Typography className="flex my-2">
-          <MapPinIcon className="w-5 h-5 mr-2" />
-          {job?.createdAt}
+          <ClockIcon className="w-5 h-5 mr-2" />
+          {date}
         </Typography>
         <Typography className="flex my-2">
           <MapPinIcon className="w-5 h-5 mr-2" />

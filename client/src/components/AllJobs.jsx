@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import JobCard from "./JobCard";
 import Loader from "./Loader";
+import Hero from "./Hero";
 
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -27,35 +28,37 @@ const AllJobs = () => {
   }
 
   return (
-    <section className="py-8 bg-blueGray-50 overflow-hidden min-h-[83vh] bg-gray-100">
-      <div className="container px-4 mx-auto">
-        <h2 className="mb-5 text-4xl text-center font-bold font-heading font-heading tracking-px-n leading-none">
-          Jobs
-        </h2>
-        <p className="mb-10 text-center text-blueGray-500 text-xl">
-          {jobs.length === 0
-            ? "No jobs available"
-            : `We have ${jobs.length} jobs available`}
-        </p>
+    <>
+      <section id="jobs" className="py-8 bg-blueGray-50 overflow-hidden ">
+        <div className="container px-4 mx-auto">
+          <h2 className="mb-5 text-4xl text-center font-bold font-heading font-heading tracking-px-n leading-none">
+            Jobs
+          </h2>
+          <p className="mb-10 text-center text-blueGray-500 text-xl">
+            {jobs.length === 0
+              ? "No jobs available"
+              : `We have ${jobs.length} jobs available`}
+          </p>
 
-        <div className="flex flex-wrap">
-          {jobs.map((job) => (
-            <JobCard
-              key={job._id}
-              job={{
-                company: job.company,
-                position: job.position,
-                workLocation: job.workLocation,
-                locationType: job.locationType,
-                id: job._id,
-                author: job?.author?.name,
-                authorId: job?.author?._id,
-              }}
-            />
-          ))}
+          <div className="flex flex-wrap">
+            {jobs.map((job) => (
+              <JobCard
+                key={job._id}
+                job={{
+                  company: job.company,
+                  position: job.position,
+                  workLocation: job.workLocation,
+                  locationType: job.locationType,
+                  id: job._id,
+                  author: job?.author?.name,
+                  authorId: job?.author?._id,
+                }}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
