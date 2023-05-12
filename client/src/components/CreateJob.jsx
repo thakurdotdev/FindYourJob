@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
+import { motion } from "framer-motion";
 
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
@@ -32,7 +33,12 @@ const CreateJob = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-[83vh] bg-gray-100">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex justify-center items-center min-h-[83vh] bg-gray-100"
+    >
       <Card
         color="white"
         shadow={true}
@@ -81,7 +87,7 @@ const CreateJob = () => {
           </Button>
         </form>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

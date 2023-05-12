@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import { motion } from "framer-motion";
 
 import { UserContext } from "../Context/userContext";
 
@@ -40,11 +41,16 @@ const Login = () => {
   };
 
   if (redirect) {
-    return <Navigate to={"/"} />;
+    return <Navigate to={"/jobs"} />;
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
+    >
       <Card color="white" shadow={true} className="p-8 items-center">
         <Typography variant="h4" color="blue-gray">
           Login To
@@ -88,7 +94,7 @@ const Login = () => {
           </Typography>
         </form>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

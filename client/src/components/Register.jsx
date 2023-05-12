@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -34,7 +35,12 @@ const Register = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
+    >
       <Card color="white" shadow={true} className="items-center p-8">
         <Typography variant="h4" color="blue-gray">
           Register To
@@ -76,7 +82,7 @@ const Register = () => {
           </Typography>
         </form>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

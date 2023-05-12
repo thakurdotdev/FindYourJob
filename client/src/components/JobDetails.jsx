@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loader from "./Loader";
+import { motion } from "framer-motion";
 
 import { Button, Card, Typography } from "@material-tailwind/react";
 import {
   ArrowLeftIcon,
   ClockIcon,
-  DeviceTabletIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 
@@ -29,17 +29,25 @@ const JobDetails = () => {
     return <Loader />;
   }
 
-  const date = new Date(job.createdAt).toLocaleDateString("en-US", {
+  const date = new Date(job?.createdAt).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
 
   return (
-    <div className="flex flex-col-reverse md:flex-row w-full md:min-h-[72vh] justify-center items-center my-10">
-      <div className="w-[90%] md:w-1/2 px-4">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col-reverse md:flex-row w-full md:min-h-[72vh] justify-center items-center my-10"
+    >
+      <div className="w-[90%] md:w-1/2  px-4">
         <Link to={"/jobs"}>
-          <Button variant="text" className="flex items-center gap-2 my-2">
+          <Button
+            variant="text"
+            className="flex items-center gap-2 my-2 bg-blue-gray-50"
+          >
             <ArrowLeftIcon strokeWidth={2} className="h-5 w-5" />
             All Jobs
           </Button>
@@ -74,6 +82,7 @@ const JobDetails = () => {
           technological movement. engineering team.
         </Typography>
       </div>
+
       <Card shadow={true} className="w-[90%] lg:w-60 flex flex-col p-10">
         <Typography variant="h4" color="black" className="mx-auto mb-5">
           {job?.company}
@@ -90,7 +99,7 @@ const JobDetails = () => {
           Apply Now
         </Button>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

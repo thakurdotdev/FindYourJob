@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
@@ -62,7 +63,12 @@ const EditJob = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-[83vh] bg-gray-100">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex justify-center items-center min-h-[83vh] bg-gray-100"
+    >
       <Card
         color="white"
         shadow={true}
@@ -109,7 +115,7 @@ const EditJob = () => {
           </Button>
         </form>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 
