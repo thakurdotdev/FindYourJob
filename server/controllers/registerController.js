@@ -20,7 +20,7 @@ const registerController = async (req, res) => {
 
     const existingUser = await userModal.findOne({ email });
     if (existingUser) {
-      return res.status(200).send({
+      return res.status(409).send({
         success: true,
         message: "Email is already there",
       });

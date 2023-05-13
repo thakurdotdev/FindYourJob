@@ -1,14 +1,22 @@
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
-import { Card, Input, Button, Typography } from "@material-tailwind/react";
+
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+  Alert,
+} from "@material-tailwind/react";
 import { motion } from "framer-motion";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
-  const [redirect, setRedirect] = useState(false);
+  const [message, showMessage] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
   const register = async (e) => {
     e.preventDefault();
@@ -22,17 +30,24 @@ const Register = () => {
           body: JSON.stringify(body),
         }
       );
-      const jsonData = await response.json();
-      setRedirect(true);
-      console.log(jsonData);
+
+      if (response.status === 409) {
+        setEmailError(true);
+        setTimeout(() => {
+          setEmailError(false);
+        }, 3000);
+      }
+
+      if (response.status === 200) {
+        showMessage(true);
+        setTimeout(() => {
+          showMessage(false);
+        }, 3000);
+      }
     } catch (err) {
       console.error(err.message);
     }
   };
-
-  if (redirect) {
-    return <Navigate to={"/login"} />;
-  }
 
   return (
     <motion.div
@@ -41,6 +56,12 @@ const Register = () => {
       transition={{ duration: 0.5 }}
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
+      {message && (
+        <Alert color="green" className="w-80 max-w-screen-lg sm:w-96">
+          <Typography color="white">Registration Successful!</Typography>
+        </Alert>
+      )}
+
       <Card color="white" shadow={true} className="items-center p-8">
         <Typography variant="h4" color="blue-gray">
           Register To
@@ -52,20 +73,30 @@ const Register = () => {
         >
           <div className="mb-4 flex flex-col gap-6">
             <Input
+              type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               label="Name"
+              required
             />
+            {emailError && (
+              <Typography color="red">
+                Email already exists. Please try again.
+              </Typography>
+            )}
             <Input
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               label="Email"
+              required
             />
             <Input
               value={password}
               onChange={(e) => setPassowrd(e.target.value)}
               type="password"
               label="Password"
+              required
             />
           </div>
           <Button type="submit" className="mt-6" fullWidth>

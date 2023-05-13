@@ -5,25 +5,18 @@ import jwt from "jsonwebtoken";
 const loginController = async (req, res) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res.send({
-      success: false,
-      message: "Please Provide the all details",
-    });
-  }
-
   const user = await userModal.findOne({ email });
   if (!user) {
     return res.status(401).send({
       success: false,
-      message: "Invalid credentials",
+      message: "Invalid Email",
     });
   }
   const isMatch = bcrypt.compareSync(password, user.password);
   if (!isMatch) {
-    return res.status(401).send({
+    return res.status(402).send({
       success: false,
-      message: "Invalid credentials",
+      message: "Invalid Password",
     });
   }
 

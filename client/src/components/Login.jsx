@@ -1,7 +1,13 @@
 import { useState, useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
-import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+  Alert,
+} from "@material-tailwind/react";
 import { motion } from "framer-motion";
 
 import { UserContext } from "../Context/userContext";
@@ -10,6 +16,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [emailError, showemailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const [message, showMessage] = useState(false);
 
   const { setUser } = useContext(UserContext);
@@ -29,11 +37,20 @@ const Login = () => {
       if (response.status === 200) {
         const data = await response.json();
         setUser(data);
+        showMessage(true);
         setTimeout(() => {
           setRedirect(true);
-        }, 100);
-      } else {
-        showMessage(true);
+        }, 3000);
+      } else if (response.status === 402) {
+        setPasswordError(true);
+        setTimeout(() => {
+          setPasswordError(false);
+        }, 3000);
+      } else if (response.status === 401) {
+        showemailError(true);
+        setTimeout(() => {
+          showemailError(false);
+        }, 3000);
       }
     } catch (err) {
       console.error(err.message);
@@ -51,6 +68,11 @@ const Login = () => {
       transition={{ duration: 0.5 }}
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
+      {message && (
+        <Alert color="green" className="w-80 max-w-screen-lg sm:w-96">
+          <Typography color="white">Login Successful!</Typography>
+        </Alert>
+      )}
       <Card color="white" shadow={true} className="p-8 items-center">
         <Typography variant="h4" color="blue-gray">
           Login To
@@ -62,23 +84,29 @@ const Login = () => {
         >
           <div className="mb-4 flex flex-col gap-6">
             <Input
+              type="email"
               label="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
+            {emailError && (
+              <Typography color="red" className="text-center font-normal">
+                Email not found!
+              </Typography>
+            )}
             <Input
               type="password"
               label="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
-            <div>
-              {message ? (
-                <p className="text-red-500 text-center mt-2">
-                  Invalid Credentials
-                </p>
-              ) : null}
-            </div>
+            {passwordError && (
+              <Typography color="red" className="text-center font-normal">
+                Incorrect Password!
+              </Typography>
+            )}
           </div>
           <Button className="mt-6" fullWidth type="submit">
             Login
