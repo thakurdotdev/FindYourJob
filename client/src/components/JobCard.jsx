@@ -13,7 +13,7 @@ import { Button, Card } from "@material-tailwind/react";
 const JobCard = ({
   job: { company, position, workLocation, locationType, id, author, authorId },
 }) => {
-  const [navigate, setNavigate] = useState(false);
+  const [reload, setReload] = useState(false);
   const { user } = useContext(UserContext);
 
   const handleDelete = async () => {
@@ -21,14 +21,14 @@ const JobCard = ({
       await fetch(`https://job-portal-app-kzk0.onrender.com/deleteJob/${id}`, {
         method: "DELETE",
       });
-      setNavigate(true);
+      setReload(true);
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  if (navigate) {
-    return window.location.reload();
+  if (reload) {
+    window.location.reload();
   }
 
   return (

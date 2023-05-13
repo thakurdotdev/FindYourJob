@@ -59,7 +59,7 @@ const EditJob = () => {
   };
 
   if (navigate) {
-    return <Navigate to="/" />;
+    return <Navigate to="/jobs" />;
   }
 
   return (
