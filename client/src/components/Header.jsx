@@ -58,9 +58,10 @@ const Header = () => {
     }
   };
 
-  const email = user?.email;
+  const id = user?._id;
   const name = user?.name;
   const userName = name?.toUpperCase().charAt(0);
+  console.log(id);
 
   useEffect(() => {
     window.addEventListener(
@@ -76,7 +77,7 @@ const Header = () => {
           <img src={Logo} alt="" className="w-44" />
         </Link>
         <div className="flex items-center gap-4">
-          {email && (
+          {id && (
             <>
               <Link to={"/addjob"}>
                 <Button
@@ -131,7 +132,7 @@ const Header = () => {
             </>
           )}
 
-          {!email && (
+          {!id && (
             <>
               <Link to={"/jobs"}>
                 <Button
@@ -205,7 +206,7 @@ const Header = () => {
       </div>
       <Collapse open={openNav} className="">
         <hr />
-        {email && (
+        {id && (
           <>
             <Link to={"/addjob"}>
               <Button variant="gradient" size="sm" fullWidth className="my-10">
@@ -226,7 +227,7 @@ const Header = () => {
           </>
         )}
 
-        {!email && (
+        {!id && (
           <>
             <Link to={"/register"}>
               <Button variant="gradient" size="sm" fullWidth className="my-10">

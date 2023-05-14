@@ -31,11 +31,11 @@ const loginController = async (req, res) => {
         secure: true,
       })
       .status(200)
-      .json({
+      .send({
         success: true,
         message: "Logged in successfully",
+        id: user._id,
         name: user.name,
-        email: user.email,
       });
   }
 };
