@@ -59,9 +59,6 @@ const Header = () => {
   };
 
   const id = user?.id;
-  const name = user?.name;
-  const userName = name?.toUpperCase().charAt(0);
-  console.log(id);
 
   useEffect(() => {
     window.addEventListener(
@@ -107,19 +104,10 @@ const Header = () => {
                     size="sm"
                     className="p-2 rounded-full hover:bg-gray-300"
                   >
-                    <div
-                      className=" border border-gray-300 w-8 h-8 text-black rounded-full p-1 flex items-center justify-center
-                    "
-                    >
-                      {<span className="text-lg font-bold">{userName}</span>}
-                    </div>
+                    <UserCircleIcon className="h-8 w-8 text-gray-600" />
                   </Button>
                 </MenuHandler>
-                <MenuList>
-                  <MenuItem className="flex items-center gap-2">
-                    <UserCircleIcon className="h-5 w-5" />
-                    {name}
-                  </MenuItem>
+                <MenuList className="text-black">
                   <MenuItem
                     onClick={Logout}
                     className="flex items-center gap-2"
