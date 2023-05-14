@@ -16,6 +16,7 @@ import Logo from "../assets/FYJLogo.png";
 import {
   BriefcaseIcon,
   PencilSquareIcon,
+  PowerIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
 
@@ -48,7 +49,7 @@ const Header = () => {
           credentials: "include",
         }
       );
-      if (response.status === 200) {
+      if (response.ok) {
         setUser(null);
         window.location.href = "/";
       }
@@ -57,7 +58,9 @@ const Header = () => {
     }
   };
 
-  const id = user?.id;
+  const email = user?.email;
+  const name = user?.name;
+  const userName = name?.toUpperCase().charAt(0);
 
   useEffect(() => {
     window.addEventListener(
@@ -73,11 +76,12 @@ const Header = () => {
           <img src={Logo} alt="" className="w-44" />
         </Link>
         <div className="flex items-center gap-4">
-          {id && (
+          {email && (
             <>
               <Link to={"/addjob"}>
                 <Button
                   variant="text"
+                  color="blue-gray"
                   className="hidden lg:flex items-center gap-2"
                 >
                   <PencilSquareIcon className="h-5 w-5" />
@@ -87,6 +91,7 @@ const Header = () => {
               <Link to={"/jobs"}>
                 <Button
                   variant="text"
+                  color="blue-gray"
                   className="hidden lg:flex items-center gap-2"
                 >
                   <BriefcaseIcon className="h-5 w-5" />
@@ -101,17 +106,32 @@ const Header = () => {
                     size="sm"
                     className="p-2 rounded-full hover:bg-gray-300"
                   >
-                    <UserCircleIcon className="h-8 w-8" />
+                    <div
+                      className=" border border-gray-300 w-8 h-8 text-black rounded-full p-1 flex items-center justify-center
+                    "
+                    >
+                      {<span className="text-lg font-bold">{userName}</span>}
+                    </div>
                   </Button>
                 </MenuHandler>
                 <MenuList>
-                  <MenuItem onClick={Logout}>Logout</MenuItem>
+                  <MenuItem className="flex items-center gap-2">
+                    <UserCircleIcon className="h-5 w-5" />
+                    {name}
+                  </MenuItem>
+                  <MenuItem
+                    onClick={Logout}
+                    className="flex items-center gap-2"
+                  >
+                    <PowerIcon className="h-5 w-5" />
+                    Logout
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </>
           )}
 
-          {!id && (
+          {!email && (
             <>
               <Link to={"/jobs"}>
                 <Button
@@ -185,7 +205,7 @@ const Header = () => {
       </div>
       <Collapse open={openNav} className="">
         <hr />
-        {id && (
+        {email && (
           <>
             <Link to={"/addjob"}>
               <Button variant="gradient" size="sm" fullWidth className="my-10">
@@ -206,7 +226,7 @@ const Header = () => {
           </>
         )}
 
-        {!id && (
+        {!email && (
           <>
             <Link to={"/register"}>
               <Button variant="gradient" size="sm" fullWidth className="my-10">

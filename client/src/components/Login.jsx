@@ -40,17 +40,17 @@ const Login = () => {
         showMessage(true);
         setTimeout(() => {
           setRedirect(true);
-        }, 3000);
+        }, 2000);
       } else if (response.status === 402) {
         setPasswordError(true);
         setTimeout(() => {
           setPasswordError(false);
-        }, 3000);
+        }, 2000);
       } else if (response.status === 401) {
         showemailError(true);
         setTimeout(() => {
           showemailError(false);
-        }, 3000);
+        }, 2000);
       }
     } catch (err) {
       console.error(err.message);
@@ -69,8 +69,13 @@ const Login = () => {
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
       {message && (
-        <Alert color="green" className="w-80 max-w-screen-lg sm:w-96">
-          <Typography color="white">Login Successful!</Typography>
+        <Alert
+          color="green"
+          className="w-80 max-w-screen-lg sm:w-96 text-center font-normal"
+        >
+          <Typography color="white">
+            Login Successful! Please Wait...
+          </Typography>
         </Alert>
       )}
       <Card color="white" shadow={true} className="p-8 items-center">
@@ -91,7 +96,7 @@ const Login = () => {
               required
             />
             {emailError && (
-              <Typography color="red" className="text-center font-normal">
+              <Typography color="red" className="font-thin">
                 Email not found!
               </Typography>
             )}
@@ -103,7 +108,7 @@ const Login = () => {
               required
             />
             {passwordError && (
-              <Typography color="red" className="text-center font-normal">
+              <Typography color="red" className="font-thin">
                 Incorrect Password!
               </Typography>
             )}
