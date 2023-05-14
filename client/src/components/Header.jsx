@@ -49,7 +49,7 @@ const Header = () => {
           credentials: "include",
         }
       );
-      if (response.ok) {
+      if (response.status === 200) {
         setUser(null);
         window.location.href = "/";
       }
@@ -58,7 +58,7 @@ const Header = () => {
     }
   };
 
-  const id = user?._id;
+  const id = user?.id;
   const name = user?.name;
   const userName = name?.toUpperCase().charAt(0);
   console.log(id);
