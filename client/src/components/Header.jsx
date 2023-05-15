@@ -25,16 +25,17 @@ const Header = () => {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    fetch("https://job-portal-app-kzk0.onrender.com/profile", {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const fetchUser = async () => {
+      const response = await fetch(
+        "https://job-portal-app-kzk0.onrender.com/profile",
+        {
+          credentials: "include",
+        }
+      );
+      const data = await response.json();
+      setUser(data);
+    };
+    fetchUser();
   }, []);
 
   const Logout = async () => {

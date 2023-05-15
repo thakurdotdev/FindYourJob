@@ -28,39 +28,43 @@ const AllJobs = () => {
   }
 
   return (
-    <section id="jobs" className="py-8 bg-blueGray-50 overflow-hidden ">
-      <div className="container px-4 mx-auto">
-        <h2 className="mb-5 text-4xl text-center font-bold font-heading font-heading tracking-px-n leading-none">
-          Jobs
+    <section id="jobs" className="bg-blueGray-50 overflow-hidden ">
+      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 min-h-[30vh] mb-10">
+        <h2 className="text-4xl text-center font-bold font-heading tracking-px-n leading-none text-white mb-2">
+          All Jobs
         </h2>
-        <p className="mb-10 text-center text-blueGray-500 text-xl">
+        <p className="text-center text-white text-lg font-semibold mb-6">
           {jobs.length === 0
-            ? "No jobs available"
-            : `We have ${jobs.length} jobs available`}
+            ? "Sorry, there are no jobs available at this time."
+            : `We have ${jobs.length} jobs available.`}
         </p>
-
-        <motion.div
-          className="flex flex-wrap"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {jobs.map((job) => (
-            <JobCard
-              key={job._id}
-              job={{
-                company: job.company,
-                position: job.position,
-                workLocation: job.workLocation,
-                locationType: job.locationType,
-                id: job._id,
-                author: job?.author?.name,
-                authorId: job?.author?._id,
-              }}
-            />
-          ))}
-        </motion.div>
+        <p className="text-center text-white text-base mb-4">
+          Looking for a new career opportunity? Explore the latest job listings
+          and find the perfect fit for you.
+        </p>
       </div>
+
+      <motion.div
+        className="flex flex-wrap mx-auto md:mx-52"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {jobs.map((job) => (
+          <JobCard
+            key={job._id}
+            job={{
+              company: job.company,
+              position: job.position,
+              workLocation: job.workLocation,
+              locationType: job.locationType,
+              id: job._id,
+              author: job?.author?.name,
+              authorId: job?.author?._id,
+            }}
+          />
+        ))}
+      </motion.div>
     </section>
   );
 };

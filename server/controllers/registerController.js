@@ -5,19 +5,6 @@ const registerController = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    if (!name) {
-      return res.send({ success: false, message: "Please Provide the name" });
-    }
-    if (!email) {
-      return res.send({ success: false, message: "Please Provide the email" });
-    }
-    if (!password) {
-      return res.send({
-        success: false,
-        message: "Please Provide the password",
-      });
-    }
-
     const existingUser = await userModal.findOne({ email });
     if (existingUser) {
       return res.status(409).send({

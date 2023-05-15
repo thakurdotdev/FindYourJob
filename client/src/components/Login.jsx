@@ -21,36 +21,48 @@ const Login = () => {
   const [message, showMessage] = useState(false);
 
   const { setUser } = useContext(UserContext);
+
+  const login = async (email, password) => {
+    const body = { email, password };
+    const response = await fetch(
+      "https://job-portal-app-kzk0.onrender.com/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        credentials: "include",
+      }
+    );
+    return response;
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const body = { email, password };
-      const response = await fetch(
-        "https://job-portal-app-kzk0.onrender.com/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-          credentials: "include",
-        }
-      );
-      if (response.status === 200) {
-        const data = await response.json();
-        setUser(data);
-        showMessage(true);
-        setTimeout(() => {
-          setRedirect(true);
-        }, 2000);
-      } else if (response.status === 402) {
-        setPasswordError(true);
-        setTimeout(() => {
-          setPasswordError(false);
-        }, 2000);
-      } else if (response.status === 401) {
-        showemailError(true);
-        setTimeout(() => {
-          showemailError(false);
-        }, 2000);
+      const response = await login(email, password);
+      switch (response.status) {
+        case 200:
+          const data = await response.json();
+          setUser(data);
+          showMessage(true);
+          setTimeout(() => {
+            setRedirect(true);
+          }, 2000);
+          break;
+        case 401:
+          showemailError(true);
+          setTimeout(() => {
+            showemailError(false);
+          }, 2000);
+          break;
+        case 402:
+          setPasswordError(true);
+          setTimeout(() => {
+            setPasswordError(false);
+          }, 2000);
+          break;
+        default:
+          break;
       }
     } catch (err) {
       console.error(err.message);
@@ -71,7 +83,7 @@ const Login = () => {
       {message && (
         <Alert
           color="green"
-          className="w-80 max-w-screen-lg sm:w-96 text-center font-normal"
+          className="w-80 max-w-screen-lg sm:w-96 text-center font-normal mb-2"
         >
           <Typography color="white">
             Login Successful! Please Wait...

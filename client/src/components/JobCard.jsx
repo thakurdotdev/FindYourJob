@@ -33,8 +33,11 @@ const JobCard = ({
 
   return (
     <div className="w-full md:w-1/2 px-4 mb-8">
-      <Card className="rounded-lg overflow-hidden">
-        <div className="px-6 my-5">
+      <Card
+        shadow={true}
+        className="rounded-lg bg-gray-50 overflow-hidden drop-shadow-xl"
+      >
+        <div className="px-6 py-5">
           <div className="flex items-center justify-between">
             <p className="text-2xl font-bold font-heading">{position}</p>
             <p className="text-gray-800 text-sm">
@@ -43,24 +46,29 @@ const JobCard = ({
           </div>
 
           <div className="flex items-center gap-3 mt-4">
-            <h3 className=" font-bold font-heading text-gray-900">{company}</h3>
+            <h3 className="font-bold font-heading text-gray-900 text-lg">
+              {company}
+            </h3>
           </div>
 
-          <hr className="mt-5 mb-2 text-black" />
+          <hr className="my-5 border-t-2 border-gray-200" />
 
-          <div className="flex items-center justify-around gap-3">
-            <div>
-              Posted By <span>{author}</span>
+          <div className="flex items-center justify-between">
+            <div className="text-gray-600">
+              Posted By <span className="font-bold">{author}</span>
             </div>
             {user.id === authorId ? (
-              <div>
+              <div className="flex items-center gap-2">
                 <Link to={`/edit/${id}`}>
-                  <Button variant="text" className="t">
+                  <Button
+                    variant="text"
+                    className="text-gray-600 hover:text-gray-800 transition duration-200"
+                  >
                     <PencilSquareIcon strokeWidth={2} className="h-5 w-5" />
                   </Button>
                 </Link>
                 <Button variant="text" onClick={handleDelete}>
-                  <TrashIcon strokeWidth={2} className="h-5 w-5" />
+                  <TrashIcon strokeWidth={2} className="h-5 w-5 text-red-500" />
                 </Button>
               </div>
             ) : (
