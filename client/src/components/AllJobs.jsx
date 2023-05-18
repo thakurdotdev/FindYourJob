@@ -61,6 +61,7 @@ const AllJobs = () => {
               id: job._id,
               author: job?.author?.name,
               authorId: job?.author?._id,
+              updatedAt: job?.updatedAt,
             }}
           />
         ))}

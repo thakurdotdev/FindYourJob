@@ -9,12 +9,24 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { Button, Card } from "@material-tailwind/react";
+import { formatDate } from "../Constants/Date";
 
 const JobCard = ({
-  job: { company, position, workLocation, locationType, id, author, authorId },
+  job: {
+    company,
+    position,
+    workLocation,
+    locationType,
+    id,
+    author,
+    authorId,
+    updatedAt,
+  },
 }) => {
   const [reload, setReload] = useState(false);
   const { user } = useContext(UserContext);
+
+  const DateDiff = formatDate(updatedAt);
 
   const handleDelete = async () => {
     try {
@@ -54,9 +66,15 @@ const JobCard = ({
           <hr className="my-5 border-t-2 border-gray-200" />
 
           <div className="flex items-center justify-between">
-            <div className="text-gray-600">
-              Posted By <span className="font-bold">{author}</span>
-            </div>
+            {user.id === authorId ? (
+              <div className="text-gray-600">
+                Posted By <span className="font-bold">{author}</span>
+              </div>
+            ) : (
+              <div className="text-gray-600">
+                Posted <span className="font-bold">{DateDiff}</span>
+              </div>
+            )}
             {user.id === authorId ? (
               <div className="flex items-center gap-2">
                 <Link to={`/edit/${id}`}>
