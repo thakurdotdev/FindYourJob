@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: ["https://landyourjob.netlify.app", "http://localhost:5173"],
-    methods: ["GET", "POST", "PATCH", "OPTIONS"],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
   })
 );
