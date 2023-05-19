@@ -69,7 +69,7 @@ const Header = () => {
   }, []);
 
   return (
-    <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
+    <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-2">
       <div className="flex items-center justify-around text-blue-gray-900">
         <Link to={"/"}>
           <img src={Logo} alt="" className="w-44" />
@@ -133,11 +133,7 @@ const Header = () => {
                 </Button>
               </Link>
               <Link to={"/login"}>
-                <Button
-                  variant="text"
-                  size="sm"
-                  className="hidden lg:inline-block"
-                >
+                <Button variant="text" className="hidden lg:inline-block">
                   Login
                 </Button>
               </Link>

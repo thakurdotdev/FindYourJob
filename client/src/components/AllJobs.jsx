@@ -3,6 +3,8 @@ import JobCard from "./JobCard";
 import Loader from "./Loader";
 import { motion } from "framer-motion";
 
+import BgImg from "../assets/hero-bg.svg";
+
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
 
@@ -29,7 +31,15 @@ const AllJobs = () => {
 
   return (
     <section id="jobs" className="bg-blueGray-50 overflow-hidden ">
-      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 min-h-[30vh] mb-10">
+      <div
+        style={{
+          backgroundImage: `url(${BgImg})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="flex flex-col justify-center items-center min-h-[30vh] mb-10"
+      >
         <h2 className="text-4xl text-center font-bold font-heading tracking-px-n leading-none text-white mb-2">
           All Jobs
         </h2>
