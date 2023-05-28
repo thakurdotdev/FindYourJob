@@ -3,7 +3,7 @@ import JobCard from "./JobCard";
 import Loader from "./Loader";
 import { motion } from "framer-motion";
 
-import BgImg from "../assets/hero-bg.svg";
+import homeImg from "../assets/bg.jpg";
 
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -33,22 +33,22 @@ const AllJobs = () => {
     <section id="jobs" className="bg-blueGray-50 overflow-hidden ">
       <div
         style={{
-          backgroundImage: `url(${BgImg})`,
+          backgroundImage: `url(${homeImg})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
         className="flex flex-col justify-center items-center min-h-[30vh] mb-10"
       >
-        <h2 className="text-4xl text-center font-bold font-heading tracking-px-n leading-none text-white mb-2">
+        <h2 className="text-4xl text-center font-bold  text-gray-800 mb-2">
           All Jobs
         </h2>
-        <p className="text-center text-white text-lg font-semibold mb-6">
+        <p className="text-center text-gray-700 text-lg font-semibold mb-6">
           {jobs.length === 0
             ? "Sorry, there are no jobs available at this time."
             : `We have ${jobs.length} jobs available.`}
         </p>
-        <p className="text-center text-white text-base mb-4">
+        <p className="text-center text-blue-gray-800 text-base mb-4">
           Looking for a new career opportunity? Explore the latest job listings
           and find the perfect fit for you.
         </p>

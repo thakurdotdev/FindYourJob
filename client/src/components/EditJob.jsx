@@ -3,6 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import Loader from "./Loader";
 
 const EditJob = () => {
   const { id } = useParams();
@@ -31,6 +32,8 @@ const EditJob = () => {
       console.error(err.message);
     }
   };
+
+  if (!id) return <Navigate to="/jobs" />;
 
   const editJob = async (e) => {
     e.preventDefault();
@@ -61,6 +64,8 @@ const EditJob = () => {
   if (navigate) {
     return <Navigate to="/jobs" />;
   }
+
+  if (!company) return <Loader />;
 
   return (
     <motion.div

@@ -4,19 +4,19 @@ import { motion } from "framer-motion";
 
 import { BriefcaseIcon } from "@heroicons/react/24/outline";
 import { Button } from "@material-tailwind/react";
-import heroBg from "../assets/hero-bg.svg";
 import heroImg from "../assets/hero-img.svg";
+import homeImg from "../assets/bg.jpg";
 
 const Hero = () => {
   return (
     <main
       style={{
-        backgroundImage: `url(${heroBg})`,
+        backgroundImage: `url(${homeImg})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      className="md:min-h-[83vh] flex justify-center overflow-hidden"
+      className="md:min-h-[87vh] flex justify-center overflow-hidden"
     >
       <div className="flex w-full flex-col justify-around md:px-40">
         <div className="flex flex-col p-5 md:my-5 ">
@@ -24,14 +24,14 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="w-full text-3xl font-extrabold text-center text-gray-100 uppercase md:text-5xl"
+            className="w-full text-3xl font-extrabold text-center text-gray-800 uppercase md:text-5xl"
           >
             "Connecting You to Your
             <motion.span
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="font-semibold text-amber-400 mx-2"
+              className="font-semibold text-amber-900 mx-2"
             >
               DREAM
             </motion.span>
@@ -42,7 +42,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="w-full mt-5 mb-10 mx-auto text-xl font-serif text-center text-gray-200"
+            className="w-full mt-5 mb-10 mx-auto text-xl font-serif text-center text-gray-700"
           >
             Our job website is designed to simplify the job search process and
             help job seekers land their dream careers. We offer a wide range of
@@ -53,7 +53,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex items-center justify-center lg:-mb-40 z-10"
+            className="flex flex-col md:flex-row items-center justify-center lg:-mb-40 z-10"
           >
             <Link to="/jobs">
               <Button

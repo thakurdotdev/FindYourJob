@@ -46,8 +46,8 @@ const JobCard = ({
   return (
     <div className="w-full md:w-1/2 px-4 mb-8">
       <Card
-        shadow={true}
-        className="rounded-lg bg-gray-50 overflow-hidden drop-shadow-xl"
+        shadow={false}
+        className="rounded-lg ring-1 ring-gray-400 overflow-hidden"
       >
         <div className="px-6 py-5">
           <div className="flex items-center justify-between">
@@ -63,7 +63,7 @@ const JobCard = ({
             </h3>
           </div>
 
-          <hr className="my-5 border-t-2 border-gray-200" />
+          <hr className="mt-5 mb-2 border-t-2 border-gray-200" />
 
           <div className="flex items-center justify-between">
             {user.id === authorId ? (
