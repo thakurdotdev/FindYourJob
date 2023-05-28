@@ -53,7 +53,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-col md:flex-row items-center justify-center lg:-mb-40 z-10"
+            className="flex flex-col md:flex-row items-center justify-center gap-5 lg:-mb-40 z-10"
           >
             <Link to="/jobs">
               <Button
@@ -70,7 +70,7 @@ const Hero = () => {
               <Button
                 color="cyan"
                 variant="gradient"
-                className="mr-4 flex justify-center items-center gap-2 ml-5"
+                className="mr-4 flex justify-center items-center gap-2 md:ml-5"
                 fullWidth
               >
                 <BriefcaseIcon className="h-5 w-5" />

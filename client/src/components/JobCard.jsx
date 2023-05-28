@@ -51,14 +51,14 @@ const JobCard = ({
       >
         <div className="px-6 py-5">
           <div className="flex items-center justify-between">
-            <p className="text-2xl font-bold font-heading">{position}</p>
-            <p className="text-gray-800 text-sm">
+            <p className="md:text-2xl font-bold font-heading">{position}</p>
+            <p className="text-gray-900 text-sm">
               {workLocation} - {locationType}
             </p>
           </div>
 
           <div className="flex items-center gap-3 mt-4">
-            <h3 className="font-bold font-heading text-gray-900 text-lg">
+            <h3 className="font-bold font-heading text-gray-800 md:text-lg">
               {company}
             </h3>
           </div>

@@ -25,10 +25,6 @@ const AllJobs = () => {
     }
   };
 
-  if (jobs.length === 0) {
-    return <Loader />;
-  }
-
   return (
     <section id="jobs" className="bg-blueGray-50 overflow-hidden ">
       <div
@@ -54,28 +50,32 @@ const AllJobs = () => {
         </p>
       </div>
 
-      <motion.div
-        className="flex flex-wrap mx-auto md:mx-52"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {jobs.map((job) => (
-          <JobCard
-            key={job._id}
-            job={{
-              company: job.company,
-              position: job.position,
-              workLocation: job.workLocation,
-              locationType: job.locationType,
-              id: job._id,
-              author: job?.author?.name,
-              authorId: job?.author?._id,
-              updatedAt: job?.updatedAt,
-            }}
-          />
-        ))}
-      </motion.div>
+      {jobs.length === 0 ? (
+        <Loader />
+      ) : (
+        <motion.div
+          className="flex flex-wrap mx-auto md:mx-52"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {jobs.map((job) => (
+            <JobCard
+              key={job._id}
+              job={{
+                company: job.company,
+                position: job.position,
+                workLocation: job.workLocation,
+                locationType: job.locationType,
+                id: job._id,
+                author: job?.author?.name,
+                authorId: job?.author?._id,
+                updatedAt: job?.updatedAt,
+              }}
+            />
+          ))}
+        </motion.div>
+      )}
     </section>
   );
 };
