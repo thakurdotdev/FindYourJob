@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
 import { motion } from "framer-motion";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 const CreateJob = () => {
@@ -11,6 +12,7 @@ const CreateJob = () => {
   const [workLocation, setWorkLocation] = useState("");
   const [locationType, setLocationType] = useState("");
   const [navigate, setNavigate] = useState(false);
+  const [Added, setAdded] = useState(false);
 
   const handleAddJob = async (e) => {
     e.preventDefault();
@@ -22,7 +24,10 @@ const CreateJob = () => {
         body: JSON.stringify(body),
         credentials: "include",
       });
-      setNavigate(true);
+      setAdded(true);
+      setTimeout(() => {
+        setNavigate(true);
+      }, 2000);
     } catch (err) {
       console.error(err.message);
     }
@@ -39,6 +44,15 @@ const CreateJob = () => {
       transition={{ duration: 0.5 }}
       className="flex justify-center items-center min-h-[83vh] bg-gray-100"
     >
+      {Added &&
+        (toast(" Job Added Successfully", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+        }),
+        (<ToastContainer />))}
       <Card
         color="white"
         shadow={true}

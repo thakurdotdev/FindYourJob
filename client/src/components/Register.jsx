@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
-
-import {
-  Card,
-  Input,
-  Button,
-  Typography,
-  Alert,
-} from "@material-tailwind/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
+import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -56,12 +51,15 @@ const Register = () => {
       transition={{ duration: 0.5 }}
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
-      {message && (
-        <Alert color="green" className="w-80 max-w-screen-lg sm:w-96">
-          <Typography color="white">Registration Successful!</Typography>
-        </Alert>
-      )}
-
+      {message &&
+        (toast(" Registered Successfully", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+        }),
+        (<ToastContainer />))}
       <Card color="white" shadow={true} className="items-center p-8">
         <Typography variant="h4" color="blue-gray">
           Register To
@@ -79,11 +77,6 @@ const Register = () => {
               label="Name"
               required
             />
-            {emailError && (
-              <Typography color="red">
-                Email already exists. Please try again.
-              </Typography>
-            )}
             <Input
               type="email"
               value={email}
@@ -91,6 +84,11 @@ const Register = () => {
               label="Email"
               required
             />
+            {emailError && (
+              <Typography color="red" className="text-[12px]">
+                Email already exists!!
+              </Typography>
+            )}
             <Input
               value={password}
               onChange={(e) => setPassowrd(e.target.value)}

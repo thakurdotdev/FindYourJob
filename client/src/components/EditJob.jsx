@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import Loader from "./Loader";
 
@@ -12,6 +14,8 @@ const EditJob = () => {
   const [workLocation, setWorkLocation] = useState("");
   const [locationType, setLocationType] = useState("");
   const [navigate, setNavigate] = useState(false);
+  const [edited, setEdited] = useState(false);
+  const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
     getJob();
@@ -44,7 +48,10 @@ const EditJob = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      setNavigate(true);
+      setEdited(true);
+      setTimeout(() => {
+        setNavigate(true);
+      }, 2000);
     } catch (err) {
       console.error(err.message);
     }
@@ -55,7 +62,11 @@ const EditJob = () => {
       await fetch(`https://job-portal-app-kzk0.onrender.com/deleteJob/${id}`, {
         method: "DELETE",
       });
-      setNavigate(true);
+
+      setDeleted(true);
+      setTimeout(() => {
+        setNavigate(true);
+      }, 2000);
     } catch (err) {
       console.error(err.message);
     }
@@ -74,6 +85,24 @@ const EditJob = () => {
       transition={{ duration: 0.5 }}
       className="flex justify-center items-center min-h-[83vh] bg-gray-100"
     >
+      {edited &&
+        (toast(" Job Edited Successfully", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+        }),
+        (<ToastContainer />))}
+      {deleted &&
+        (toast(" Job Deleted Successfully", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+        }),
+        (<ToastContainer />))}
       <Card
         color="white"
         shadow={true}

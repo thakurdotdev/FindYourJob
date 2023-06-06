@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import { motion } from "framer-motion";
 
 import homeImg from "../assets/bg.jpg";
+import ScrollToTop from "./ScrollToTop";
 
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -26,7 +27,7 @@ const AllJobs = () => {
   };
 
   return (
-    <section id="jobs" className="bg-blueGray-50 overflow-hidden ">
+    <section id="jobs" className="bg-gray-100 overflow-hidden ">
       <div
         style={{
           backgroundImage: `url(${homeImg})`,
@@ -76,6 +77,7 @@ const AllJobs = () => {
           ))}
         </motion.div>
       )}
+      <ScrollToTop />
     </section>
   );
 };

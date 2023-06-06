@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Logo from "../assets/FYJLogo.png";
 import {
   Card,
@@ -60,9 +62,6 @@ const Login = () => {
           setTimeout(() => {
             setPasswordError(false);
           }, 2000);
-          break;
-        default:
-          break;
       }
     } catch (err) {
       console.error(err.message);
@@ -80,16 +79,15 @@ const Login = () => {
       transition={{ duration: 0.5 }}
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
-      {message && (
-        <Alert
-          color="green"
-          className="w-80 max-w-screen-lg sm:w-96 text-center font-normal mb-2"
-        >
-          <Typography color="white">
-            Login Successful! Please Wait...
-          </Typography>
-        </Alert>
-      )}
+      {message &&
+        (toast.success("Login Successful!", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+        }),
+        (<ToastContainer />))}
       <Card color="white" shadow={true} className="p-8 items-center">
         <Typography variant="h4" color="blue-gray">
           Login To
@@ -108,7 +106,7 @@ const Login = () => {
               required
             />
             {emailError && (
-              <Typography color="red" className="font-thin">
+              <Typography color="red" className="font-thin text-sm">
                 Email not found!
               </Typography>
             )}
