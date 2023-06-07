@@ -33,19 +33,21 @@ const JobCard = ({
       >
         <div className="px-6 py-5">
           <div className="flex items-center justify-between">
-            <p className="md:text-2xl text-black font-bold">{position}</p>
+            <p className="md:text-2xl  text-black font-bold">{position}</p>
             <p className="text-gray-900 text-sm">
               {workLocation} - {locationType}
             </p>
           </div>
 
           <div className="flex items-center gap-3 mt-4">
-            <h3 className="font-sans text-gray-900 md:text-lg">{company}</h3>
+            <h3 className="font-sans text-gray-900 text-sm md:text-lg">
+              {company}
+            </h3>
           </div>
 
           <hr className="mt-5 mb-2 border-t-2 border-gray-200" />
 
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             {user.id === authorId ? (
               <div className="text-gray-600">
                 Posted By <span className="font-bold">{author}</span>
