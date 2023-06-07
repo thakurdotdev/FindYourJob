@@ -47,14 +47,14 @@ const JobCard = ({
 
           <hr className="mt-5 mb-2 border-t-2 border-gray-200" />
 
-          <div className="flex flex-col md:flex-row items-center justify-between">
+          <div className="flex items-center justify-between">
             {user.id === authorId ? (
               <div className="text-gray-600">
-                Posted By <span className="font-bold">{author}</span>
+                <span className="font-bold">{author}</span>
               </div>
             ) : (
               <div className="text-gray-600">
-                Posted <span className="font-bold">{DateDiff}</span>
+                <span className="font-bold">{DateDiff}</span>
               </div>
             )}
             {user.id === authorId ? (
@@ -70,8 +70,12 @@ const JobCard = ({
               </div>
             ) : (
               <Link to={`/job/${id}`}>
-                <Button variant="text" className="flex items-center gap-2">
-                  View Details
+                <Button
+                  variant="text"
+                  size="sm"
+                  className="flex items-center gap-2 bg-blue-50"
+                >
+                  view details
                   <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
                 </Button>
               </Link>

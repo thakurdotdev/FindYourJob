@@ -80,7 +80,7 @@ const Login = () => {
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
       {message &&
-        (toast.success("Login Successful!", {
+        (toast("Login Successful!", {
           position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
