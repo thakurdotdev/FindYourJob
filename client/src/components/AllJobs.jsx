@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 
 import homeImg from "../assets/bg.jpg";
 import ScrollToTop from "./ScrollToTop";
+import { Input, Button, Typography } from "@material-tailwind/react";
 
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     getJobs();
@@ -17,6 +19,20 @@ const AllJobs = () => {
     try {
       const response = await fetch(
         "https://job-portal-app-kzk0.onrender.com/getJobs"
+      );
+      const jsonData = await response.json();
+      setJobs(jsonData.jobs);
+      console.log(jsonData);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const searchJob = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `https://job-portal-app-kzk0.onrender.com/searchJobs/${search}`
       );
       const jsonData = await response.json();
       setJobs(jsonData.jobs);
@@ -37,18 +53,26 @@ const AllJobs = () => {
         }}
         className="flex flex-col justify-center items-center min-h-[30vh] mb-10"
       >
-        <h2 className="text-4xl text-center font-bold  text-gray-800 mb-2">
-          All Jobs
-        </h2>
-        <p className="text-center text-gray-700 text-lg font-semibold mb-6">
-          {jobs.length === 0
-            ? "Sorry, there are no jobs available at this time."
-            : `We have ${jobs.length} jobs available.`}
-        </p>
-        <p className="text-center text-blue-gray-800 text-base mb-4">
-          Looking for a new career opportunity? Explore the latest job listings
-          and find the perfect fit for you.
-        </p>
+        <Typography className="text-light-blue-900 text-4xl font-bold my-5">
+          Search Your Dream Job
+        </Typography>
+
+        <form className="flex justify-center items-center gap-5">
+          <div className="w-[32rem] relative">
+            <Input
+              type="text"
+              variant="outlined"
+              label="Search Job Title, Company, Location"
+            />
+            <Button
+              size="sm"
+              color={"blue"}
+              className="!absolute right-1 top-1 rounded"
+            >
+              Search
+            </Button>
+          </div>
+        </form>
       </div>
 
       {jobs.length === 0 ? (

@@ -3,13 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Logo from "../assets/FYJLogo.png";
-import {
-  Card,
-  Input,
-  Button,
-  Typography,
-  Alert,
-} from "@material-tailwind/react";
+import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { motion } from "framer-motion";
 
 import { UserContext } from "../Context/userContext";

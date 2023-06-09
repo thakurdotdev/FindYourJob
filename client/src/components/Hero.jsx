@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { UserContext } from "../Context/userContext";
 
 import { BriefcaseIcon } from "@heroicons/react/24/outline";
 import { Button } from "@material-tailwind/react";
 import heroImg from "../assets/hero-img.svg";
 import homeImg from "../assets/bg.jpg";
+import Ratings from "./Ratings";
 
 const Hero = () => {
+  const { user } = useContext(UserContext);
+  const id = user?.id;
   return (
     <main
       style={{
@@ -16,9 +20,8 @@ const Hero = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      className="md:min-h-[87vh] flex justify-center overflow-hidden"
     >
-      <div className="flex w-full flex-col justify-around md:px-40">
+      <div className="flex w-full flex-col justify-around md:px-40 min-h-[90vh]">
         <div className="flex flex-col p-5 md:my-5 ">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -41,7 +44,7 @@ const Hero = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
             className="w-full mt-5 mb-10 mx-auto text-xl font-serif text-center text-gray-700"
           >
             Our job website is designed to simplify the job search process and
@@ -66,7 +69,7 @@ const Hero = () => {
                 See All Openings
               </Button>
             </Link>
-            <Link to={"/register"}>
+            <Link to={id ? "/addjob" : "/register"}>
               <Button
                 color="cyan"
                 variant="gradient"
@@ -82,13 +85,14 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
           <div className="relative block w-full mx-auto mt-6 md:mt-0 md:-mb-20">
             <img src={heroImg} className="max-w-xs m-auto lg:max-w-3xl" />
           </div>
         </motion.div>
       </div>
+      <Ratings />
     </main>
   );
 };

@@ -25,7 +25,7 @@ const loginController = async (req, res) => {
     return res
       .cookie("token", token, {
         domain: "job-portal-app-kzk0.onrender.com",
-        expires: new Date(Date.now() + 86400000), // 1 day
+        expires: new Date(Date.now() + 86400000 * 2), // 2 day
         httpOnly: true,
         sameSite: "none",
         secure: true,
