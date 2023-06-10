@@ -7,18 +7,18 @@ const Ratings = () => {
     <div className="flex flex-col items-center justify-center mt-32 mb-10">
       <Typography
         color="blue-gray"
-        className="mb-10 text-2xl md:text-4xl p-5 border-b-2 border-b-light-blue-700 font-bold"
+        className="mb-10 text-2xl md:text-4xl p-2 border-b-2 border-b-light-blue-700 font-bold"
       >
         What our users are saying
       </Typography>
 
-      <div className="flex flex-wrap justify-center items-center gap-10">
+      <div className="flex flex-wrap justify-center items-center p-5 md:p-0 gap-10">
         {Array(5)
           .fill()
           .map((_, i) => (
             <div
               key={i}
-              className="px-8 text-center max-w-md bg-white shadow bg-opacity-30 backdrop-blur-md p-5"
+              className="px-8 text-center max-w-md bg-white shadow bg-opacity-50 border-b-2 border-b-blue-300 backdrop-blur-md p-5"
             >
               <Typography
                 variant="h5"

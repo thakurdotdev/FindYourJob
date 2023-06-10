@@ -29,7 +29,7 @@ const JobCard = ({
     <div className="w-full md:w-1/2 px-4 mb-8">
       <Card
         shadow={false}
-        className="rounded-lg bg-white ring-1 ring-gray-900 shadow-sm overflow-hidden"
+        className="rounded-lg bg-white border-b-2 border-b-blue-500 shadow-sm overflow-hidden"
       >
         <div className="px-6 py-5">
           <div className="flex items-center justify-between">

@@ -4,7 +4,7 @@ import Loader from "./Loader";
 import { motion } from "framer-motion";
 
 import homeImg from "../assets/bg.jpg";
-import { Input, Button, Typography } from "@material-tailwind/react";
+import { Input, Typography } from "@material-tailwind/react";
 
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -21,28 +21,13 @@ const AllJobs = () => {
       );
       const jsonData = await response.json();
       setJobs(jsonData.jobs);
-      console.log(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-  const searchJob = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(
-        `https://job-portal-app-kzk0.onrender.com/searchJobs/${search}`
-      );
-      const jsonData = await response.json();
-      setJobs(jsonData.jobs);
-      console.log(jsonData);
     } catch (err) {
       console.error(err.message);
     }
   };
 
   return (
-    <section id="jobs" className="bg-gray-100 overflow-hidden ">
+    <section className="bg-gray-100 overflow-hidden min-h-[85vh] ">
       <div
         style={{
           backgroundImage: `url(${homeImg})`,
@@ -50,26 +35,20 @@ const AllJobs = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className="flex flex-col justify-center items-center min-h-[30vh] mb-10"
+        className="flex flex-col justify-center items-center w-full min-h-[30vh] mb-10"
       >
-        <Typography className="text-light-blue-900 text-4xl font-bold my-5">
+        <Typography className="text-light-blue-900 text-2xl md:text-4xl font-bold my-5">
           Search Your Dream Job
         </Typography>
 
         <form className="flex justify-center items-center gap-5">
-          <div className="w-[32rem] relative">
+          <div className=" w-[20rem] md:w-[32rem] relative">
             <Input
               type="text"
-              variant="outlined"
               label="Search Job Title, Company, Location"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
-            <Button
-              size="sm"
-              color={"blue"}
-              className="!absolute right-1 top-1 rounded"
-            >
-              Search
-            </Button>
           </div>
         </form>
       </div>
@@ -83,21 +62,33 @@ const AllJobs = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {jobs.map((job) => (
-            <JobCard
-              key={job._id}
-              job={{
-                company: job.company,
-                position: job.position,
-                workLocation: job.workLocation,
-                locationType: job.locationType,
-                id: job._id,
-                author: job?.author?.name,
-                authorId: job?.author?._id,
-                updatedAt: job?.updatedAt,
-              }}
-            />
-          ))}
+          {jobs
+            .filter((item) => {
+              if (search === "") {
+                return item;
+              } else if (
+                item.position.toLowerCase().includes(search.toLowerCase()) ||
+                item.company.toLowerCase().includes(search.toLowerCase()) ||
+                item.workLocation.toLowerCase().includes(search.toLowerCase())
+              ) {
+                return item;
+              }
+            })
+            .map((job) => (
+              <JobCard
+                key={job._id}
+                job={{
+                  company: job.company,
+                  position: job.position,
+                  workLocation: job.workLocation,
+                  locationType: job.locationType,
+                  id: job._id,
+                  author: job?.author?.name,
+                  authorId: job?.author?._id,
+                  updatedAt: job?.updatedAt,
+                }}
+              />
+            ))}
         </motion.div>
       )}
     </section>

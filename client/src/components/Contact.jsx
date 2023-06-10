@@ -33,11 +33,11 @@ const Contact = () => {
     <div className="min-h-[84vh] w-full flex flex-col justify-center items-center">
       <Typography
         color="blue-gray"
-        className="mb-10 text-2xl md:text-4xl p-5 border-b-2 border-b-light-blue-700 font-bold"
+        className="mb-10 text-2xl md:text-4xl p-2 border-b-2 border-b-light-blue-700 font-bold"
       >
         Contact Us
       </Typography>
-      <div className="flex flex-col md:flex-row lg:w-[70%] items-center justify-around">
+      <div className="flex flex-col md:flex-row w-[90%] lg:w-[70%] items-center justify-around">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ x: 0, opacity: 1 }}

@@ -13,7 +13,7 @@ import Contact from "./Contact";
 const Hero = () => {
   const { user } = useContext(UserContext);
   const id = user?.id;
-  console.log(user);
+
   return (
     <main
       style={{
