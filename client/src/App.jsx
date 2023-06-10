@@ -10,12 +10,14 @@ import { UserContextProvider } from "./Context/userContext";
 import JobDetails from "./components/JobDetails";
 import Hero from "./components/Hero";
 import Error from "./components/Error";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
     <UserContextProvider>
       <Header />
       <Outlet />
+      <ScrollToTop />
       <Footer />
     </UserContextProvider>
   );

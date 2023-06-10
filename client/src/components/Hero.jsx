@@ -2,16 +2,18 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { UserContext } from "../Context/userContext";
+import Ratings from "./Ratings";
 
 import { BriefcaseIcon } from "@heroicons/react/24/outline";
 import { Button } from "@material-tailwind/react";
 import heroImg from "../assets/hero-img.svg";
 import homeImg from "../assets/bg.jpg";
-import Ratings from "./Ratings";
+import Contact from "./Contact";
 
 const Hero = () => {
   const { user } = useContext(UserContext);
   const id = user?.id;
+  console.log(user);
   return (
     <main
       style={{
@@ -93,6 +95,7 @@ const Hero = () => {
         </motion.div>
       </div>
       <Ratings />
+      <Contact />
     </main>
   );
 };

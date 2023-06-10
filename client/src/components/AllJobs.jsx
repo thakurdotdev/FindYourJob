@@ -4,7 +4,6 @@ import Loader from "./Loader";
 import { motion } from "framer-motion";
 
 import homeImg from "../assets/bg.jpg";
-import ScrollToTop from "./ScrollToTop";
 import { Input, Button, Typography } from "@material-tailwind/react";
 
 const AllJobs = () => {
@@ -101,7 +100,6 @@ const AllJobs = () => {
           ))}
         </motion.div>
       )}
-      <ScrollToTop />
     </section>
   );
 };

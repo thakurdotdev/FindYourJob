@@ -25,19 +25,19 @@ const Ratings = () => {
                 color="blue-gray"
                 className="mb-6 font-semibold"
               >
-                &quot;This is an excellent product, the documentation is
-                excellent and helped me get things done more efficiently.&quot;
+                &quot; I was able to find my dream job in just a few days. Thank
+                you &quot;
               </Typography>
               <Avatar
-                src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
+                src="https://pankajthakur.netlify.app/assets/profile-pic-8727f2af.webp"
                 alt="image"
                 size="lg"
               />
               <Typography variant="h6" className="mt-4">
-                Candic Wu
+                Pankaj Kumar
               </Typography>
               <Typography color="gray" className="mb-4 font-normal">
-                Lead Frontend Developer
+                MERN Stack WEB Developer
               </Typography>
               <Rating value={5} readonly />
             </div>
