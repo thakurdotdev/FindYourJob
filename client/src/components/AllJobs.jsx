@@ -4,12 +4,25 @@ import Loader from "./Loader";
 import { motion } from "framer-motion";
 
 import homeImg from "../assets/bg.jpg";
-import { Input, Typography } from "@material-tailwind/react";
+import { Button, Input, Typography } from "@material-tailwind/react";
 
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
 
+  const FilterJobs = (filterName) => {
+    if (filterName === "remote") {
+      const remoteJobs = jobs.filter((job) => job.locationType === "Remote");
+      setJobs(remoteJobs);
+    } else if (filterName === "intern") {
+      const internshipJobs = jobs.filter((job) =>
+        job.position.toLowerCase().includes("intern")
+      );
+      setJobs(internshipJobs);
+    } else {
+      getJobs();
+    }
+  };
   useEffect(() => {
     getJobs();
   }, []);
@@ -27,7 +40,7 @@ const AllJobs = () => {
   };
 
   return (
-    <section className="bg-gray-100 overflow-hidden min-h-[85vh] ">
+    <section className="bg-gray-100 overflow-hidden min-h-[85vh]">
       <div
         style={{
           backgroundImage: `url(${homeImg})`,
@@ -51,6 +64,32 @@ const AllJobs = () => {
             />
           </div>
         </form>
+        <div className="w-full flex justify-center items-center gap-5 mt-5">
+          <Button
+            variant="text"
+            className="bg-white bg-opacity-40 backdrop-blur-md"
+            size="sm"
+            onClick={() => FilterJobs("remote")}
+          >
+            Remote
+          </Button>
+          <Button
+            variant="text"
+            className="bg-white bg-opacity-40 backdrop-blur-md"
+            size="sm"
+            onClick={() => FilterJobs("intern")}
+          >
+            Internship
+          </Button>
+          <Button
+            variant="text"
+            className="bg-white bg-opacity-40 backdrop-blur-md"
+            size="sm"
+            onClick={() => FilterJobs("all")}
+          >
+            All
+          </Button>
+        </div>
       </div>
 
       {jobs.length === 0 ? (
