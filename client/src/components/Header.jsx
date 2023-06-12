@@ -61,6 +61,7 @@ const Header = () => {
   };
 
   const id = user?.id;
+  const name = user?.name;
 
   useEffect(() => {
     window.addEventListener(
@@ -110,6 +111,10 @@ const Header = () => {
                   </Button>
                 </MenuHandler>
                 <MenuList className="text-black">
+                  <MenuItem className="flex items-center gap-2">
+                    <UserCircleIcon className="h-5 w-5" />
+                    {name}
+                  </MenuItem>
                   <MenuItem
                     onClick={Logout}
                     className="flex items-center gap-2"

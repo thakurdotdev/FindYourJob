@@ -21,7 +21,10 @@ const loginController = async (req, res) => {
   }
 
   if (isMatch) {
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign(
+      { id: user._id, email: user.email, name: user.name },
+      process.env.JWT_SECRET
+    );
     res
       .cookie("token", token, {
         domain: "job-portal-app-kzk0.onrender.com",
@@ -34,6 +37,7 @@ const loginController = async (req, res) => {
       .json({
         success: true,
         message: "Logged in successfully",
+        id: user._id,
       });
   }
 };
