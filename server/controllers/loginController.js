@@ -21,11 +21,14 @@ const loginController = async (req, res) => {
   }
 
   if (isMatch) {
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {});
-    return res
+    const token = jwt.sign(
+      { id: user._id, email: user.email, name: user.name },
+      process.env.JWT_SECRET
+    );
+    res
       .cookie("token", token, {
         domain: "job-portal-app-kzk0.onrender.com",
-        expires: new Date(Date.now() + 86400000 * 2), // 2 day
+        expires: new Date(Date.now() + 86400000), // 1 day
         httpOnly: true,
         sameSite: "none",
         secure: true,
@@ -34,9 +37,6 @@ const loginController = async (req, res) => {
       .json({
         success: true,
         message: "Logged in successfully",
-        id: user._id,
-        email: user.email,
-        name: user.name,
       });
   }
 };

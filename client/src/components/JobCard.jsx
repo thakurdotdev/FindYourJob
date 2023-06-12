@@ -17,7 +17,6 @@ const JobCard = ({
     workLocation,
     locationType,
     id,
-    author,
     authorId,
     updatedAt,
   },
@@ -48,15 +47,10 @@ const JobCard = ({
           <hr className="mt-5 mb-2 border-t-2 border-gray-200" />
 
           <div className="flex items-center justify-between">
-            {user.id === authorId ? (
-              <div className="text-gray-600">
-                <span className="font-bold">{author}</span>
-              </div>
-            ) : (
-              <div className="text-gray-600">
-                <span className="font-bold">{DateDiff}</span>
-              </div>
-            )}
+            <div className="text-gray-600">
+              <span className="font-serif text-sm">{DateDiff}</span>
+            </div>
+
             {user.id === authorId ? (
               <div className="flex items-center gap-2">
                 <Link to={`/edit/${id}`}>
@@ -73,7 +67,7 @@ const JobCard = ({
                 <Button
                   variant="text"
                   size="sm"
-                  className="flex items-center gap-2 bg-blue-50"
+                  className="flex items-center gap-2"
                 >
                   view details
                   <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />

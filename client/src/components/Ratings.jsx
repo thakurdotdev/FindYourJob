@@ -13,7 +13,7 @@ const Ratings = () => {
       </Typography>
 
       <div className="flex flex-wrap justify-center items-center p-5 md:p-0 gap-10">
-        {Array(5)
+        {Array(3)
           .fill()
           .map((_, i) => (
             <div
