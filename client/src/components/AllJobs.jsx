@@ -9,20 +9,6 @@ import { Button, Input, Typography } from "@material-tailwind/react";
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
-
-  const FilterJobs = (filterName) => {
-    if (filterName === "remote") {
-      const remoteJobs = jobs.filter((job) => job.locationType === "Remote");
-      setJobs(remoteJobs);
-    } else if (filterName === "intern") {
-      const internshipJobs = jobs.filter((job) =>
-        job.position.toLowerCase().includes("intern")
-      );
-      setJobs(internshipJobs);
-    } else {
-      getJobs();
-    }
-  };
   useEffect(() => {
     getJobs();
   }, []);
@@ -69,7 +55,7 @@ const AllJobs = () => {
             variant="text"
             className="bg-white bg-opacity-40 backdrop-blur-md"
             size="sm"
-            onClick={() => FilterJobs("remote")}
+            onClick={() => setSearch("Remote")}
           >
             Remote
           </Button>
@@ -77,7 +63,7 @@ const AllJobs = () => {
             variant="text"
             className="bg-white bg-opacity-40 backdrop-blur-md"
             size="sm"
-            onClick={() => FilterJobs("intern")}
+            onClick={() => setSearch("Intern")}
           >
             Internship
           </Button>
@@ -85,7 +71,7 @@ const AllJobs = () => {
             variant="text"
             className="bg-white bg-opacity-40 backdrop-blur-md"
             size="sm"
-            onClick={() => FilterJobs("all")}
+            onClick={() => setSearch("")}
           >
             All
           </Button>

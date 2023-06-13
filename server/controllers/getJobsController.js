@@ -5,7 +5,7 @@ const getJobsController = async (req, res) => {
     const jobs = await jobModel
       .find({})
       .populate("author", ["name"])
-      .sort({ createdAt: -1 })
+      .sort({ updatedAt: -1 })
       .limit(30);
 
     res.status(200).json({
