@@ -1,10 +1,18 @@
+import { Spinner } from "@material-tailwind/react";
 import React from "react";
-const Loader = () => {
+
+export const Loader = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+      <Spinner color="blue" className="h-8 w-8" />
     </div>
   );
 };
 
-export default Loader;
+export const JobLoader = () => {
+  return (
+    <div className="flex justify-center items-center h-[60vh]">
+      <Spinner color="blue" className="h-8 w-8" />
+    </div>
+  );
+};

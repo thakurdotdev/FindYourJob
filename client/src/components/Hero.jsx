@@ -90,7 +90,11 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <div className="relative block w-full mx-auto mt-6 md:mt-0 md:-mb-20">
-            <img src={heroImg} className="max-w-xs m-auto lg:max-w-3xl" />
+            <img
+              src={heroImg}
+              alt="HeroImg"
+              className="max-w-xs m-auto lg:max-w-3xl"
+            />
           </div>
         </motion.div>
       </div>

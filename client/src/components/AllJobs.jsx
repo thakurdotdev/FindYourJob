@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import JobCard from "./JobCard";
-import Loader from "./Loader";
+import { JobLoader } from "./Loader.jsx";
 import { motion } from "framer-motion";
 
 import homeImg from "../assets/bg.jpg";
@@ -9,6 +9,7 @@ import { Button, Input, Typography } from "@material-tailwind/react";
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
+
   useEffect(() => {
     getJobs();
   }, []);
@@ -16,17 +17,25 @@ const AllJobs = () => {
   const getJobs = async () => {
     try {
       const response = await fetch(
-        "https://job-portal-app-kzk0.onrender.com/getJobs"
+        "https://job-portal-app-kzk0.onrender.com/getJobs",
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       );
       const jsonData = await response.json();
-      setJobs(jsonData.jobs);
+      const data = jsonData.jobs;
+      setJobs(data);
     } catch (err) {
       console.error(err.message);
     }
   };
 
   return (
-    <section className="bg-gray-100 overflow-hidden min-h-[85vh]">
+    <section className="bg-gray-100 min-h-[87vh]">
       <div
         style={{
           backgroundImage: `url(${homeImg})`,
@@ -50,10 +59,10 @@ const AllJobs = () => {
             />
           </div>
         </form>
-        <div className="w-full flex justify-center items-center gap-5 mt-5">
+        <div className="w-full flex flex-wrap justify-center items-center gap-5 mt-5">
           <Button
             variant="text"
-            className="bg-white bg-opacity-40 backdrop-blur-md"
+            className="bg-white bg-opacity-50 backdrop-blur-md shadow-md"
             size="sm"
             onClick={() => setSearch("Remote")}
           >
@@ -61,7 +70,7 @@ const AllJobs = () => {
           </Button>
           <Button
             variant="text"
-            className="bg-white bg-opacity-40 backdrop-blur-md"
+            className="bg-white bg-opacity-50 backdrop-blur-md shadow-md"
             size="sm"
             onClick={() => setSearch("Intern")}
           >
@@ -69,7 +78,15 @@ const AllJobs = () => {
           </Button>
           <Button
             variant="text"
-            className="bg-white bg-opacity-40 backdrop-blur-md"
+            className="bg-white bg-opacity-50 backdrop-blur-md shadow-md"
+            size="sm"
+            onClick={() => setSearch("Frontend")}
+          >
+            Frontend
+          </Button>
+          <Button
+            variant="text"
+            className="bg-white bg-opacity-50 backdrop-blur-md shadow-md"
             size="sm"
             onClick={() => setSearch("")}
           >
@@ -79,7 +96,7 @@ const AllJobs = () => {
       </div>
 
       {jobs.length === 0 ? (
-        <Loader />
+        <JobLoader />
       ) : (
         <motion.div
           className="flex flex-wrap mx-auto md:mx-52"

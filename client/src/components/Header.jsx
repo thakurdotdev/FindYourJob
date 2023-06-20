@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/userContext";
 
+import Logo from "../assets/FYJLogo.png";
 import {
   Navbar,
   Collapse,
@@ -11,8 +12,8 @@ import {
   MenuHandler,
   MenuList,
   MenuItem,
+  Avatar,
 } from "@material-tailwind/react";
-import Logo from "../assets/FYJLogo.png";
 import {
   BriefcaseIcon,
   PencilSquareIcon,
@@ -23,21 +24,22 @@ import {
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
   const { user, setUser } = useContext(UserContext);
+  const Navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const response = await fetch(
-        "https://job-portal-app-kzk0.onrender.com/profile",
-        {
-          credentials: "include",
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-      setUser(data);
-    };
     fetchUser();
   }, []);
+
+  const fetchUser = async () => {
+    const response = await fetch(
+      "https://job-portal-app-kzk0.onrender.com/profile",
+      {
+        credentials: "include",
+      }
+    );
+    const data = await response.json();
+    setUser(data);
+  };
 
   const Logout = async () => {
     try {
@@ -61,8 +63,6 @@ const Header = () => {
   };
 
   const id = user?.id;
-  const name = user?.name;
-
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -100,21 +100,29 @@ const Header = () => {
                 </Button>
               </Link>
 
-              <Menu className="hidden lg:inline-block">
+              <Menu placement="bottom-end" className="hidden lg:inline-block">
                 <MenuHandler className="hidden lg:inline-block">
-                  <Button
-                    variant="text"
-                    size="sm"
-                    className="p-2 rounded-full hover:bg-gray-300"
-                  >
-                    <UserCircleIcon className="h-8 w-8 text-gray-600" />
+                  <Button variant="text" size="sm" className="p-2">
+                    <Avatar
+                      src={
+                        "https://pankajthakur.netlify.app/assets/profile-pic-8727f2af.webp"
+                      }
+                      withBorder={true}
+                      size="sm"
+                      alt="logo"
+                      className="p-0.5"
+                    />
                   </Button>
                 </MenuHandler>
-                <MenuList className="text-black">
-                  <MenuItem className="flex items-center gap-2">
-                    <UserCircleIcon className="h-5 w-5" />
-                    {name}
+                <MenuList>
+                  <MenuItem
+                    onClick={() => Navigate(`/profile`)}
+                    className="flex items-center gap-2"
+                  >
+                    <UserCircleIcon className="w-5" />
+                    Profile
                   </MenuItem>
+
                   <MenuItem
                     onClick={Logout}
                     className="flex items-center gap-2"

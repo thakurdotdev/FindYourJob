@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
-import Loader from "./Loader";
+import { Loader } from "./Loader";
 
 const EditJob = () => {
   const { id } = useParams();

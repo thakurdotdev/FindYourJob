@@ -27,7 +27,7 @@ const CreateJob = () => {
       setAdded(true);
       setTimeout(() => {
         setNavigate(true);
-      }, 2000);
+      }, 1000);
     } catch (err) {
       console.error(err.message);
     }
@@ -47,10 +47,7 @@ const CreateJob = () => {
       {Added &&
         (toast(" Job Added Successfully", {
           position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
+          autoClose: 1000,
         }),
         (<ToastContainer />))}
       <Card

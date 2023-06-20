@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -43,7 +43,7 @@ const Login = () => {
           showMessage(true);
           setTimeout(() => {
             setRedirect(true);
-          }, 2000);
+          }, 1000);
           break;
         case 401:
           showemailError(true);
@@ -76,7 +76,7 @@ const Login = () => {
       {message &&
         (toast("Login Successful!", {
           position: "top-center",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Loader from "./Loader";
+import { Loader } from "./Loader";
 import { motion } from "framer-motion";
 
 import { Button, Typography } from "@material-tailwind/react";

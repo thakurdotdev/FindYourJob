@@ -34,7 +34,7 @@ function ScrollToTop() {
   return (
     <button
       type="button"
-      className={`fixed p-2 bg-gray-300 text-black shadow-lg rounded-full z-20 ${
+      className={`fixed p-2 bg-gray-300 text-black shadow-lg rounded-full z-20 animate-bounce ${
         isVisible ? " bottom-8 right-8" : "hidden"
       }`}
       onClick={scrollToTop}
