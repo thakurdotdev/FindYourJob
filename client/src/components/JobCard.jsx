@@ -11,15 +11,7 @@ import { Button, Card } from "@material-tailwind/react";
 import { formatDate } from "../Constants/Date";
 
 const JobCard = ({
-  job: {
-    company,
-    position,
-    workLocation,
-    locationType,
-    id,
-    authorId,
-    updatedAt,
-  },
+  job: { company, position, workLocation, locationType, id, author, updatedAt },
 }) => {
   const { user } = useContext(UserContext);
   const DateDiff = formatDate(updatedAt);
@@ -51,7 +43,7 @@ const JobCard = ({
               <span className="font-serif text-sm">{DateDiff}</span>
             </div>
 
-            {user.id === authorId ? (
+            {user.id === author ? (
               <div className="flex items-center gap-2">
                 <Link to={`/edit/${id}`}>
                   <Button

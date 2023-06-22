@@ -125,8 +125,7 @@ const AllJobs = () => {
                   workLocation: job.workLocation,
                   locationType: job.locationType,
                   id: job._id,
-                  author: job?.author?.name,
-                  authorId: job?.author?._id,
+                  author: job?.author,
                   updatedAt: job?.updatedAt,
                 }}
               />

@@ -2,7 +2,7 @@ import jobModel from "../models/jobModel.js";
 
 const getJobsController = async (req, res) => {
   try {
-    const jobs = await jobModel.find({});
+    const jobs = await jobModel.find({}).sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,

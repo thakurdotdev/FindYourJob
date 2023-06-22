@@ -4,9 +4,8 @@ import { Loader } from "./Loader";
 
 const UserProfile = () => {
   const { user } = useContext(UserContext);
-  const id = user?.id;
 
-  if (!id) {
+  if (!user) {
     return <Loader />;
   }
 

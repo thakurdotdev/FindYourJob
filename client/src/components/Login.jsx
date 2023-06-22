@@ -43,6 +43,7 @@ const Login = () => {
           showMessage(true);
           setTimeout(() => {
             setRedirect(true);
+            window.location.href = "/jobs";
           }, 1000);
           break;
         case 401:
@@ -61,10 +62,6 @@ const Login = () => {
       console.error(err.message);
     }
   };
-
-  if (redirect) {
-    return <Navigate to={"/jobs"} />;
-  }
 
   return (
     <motion.div

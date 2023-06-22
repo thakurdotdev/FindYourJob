@@ -30,6 +30,7 @@ const Header = () => {
     fetchUser();
   }, []);
 
+  //Function to fetch user data
   const fetchUser = async () => {
     const response = await fetch(
       "https://job-portal-app-kzk0.onrender.com/profile",
@@ -41,6 +42,7 @@ const Header = () => {
     setUser(data);
   };
 
+  //Function to logout user
   const Logout = async () => {
     try {
       const response = await fetch(
@@ -63,6 +65,7 @@ const Header = () => {
   };
 
   const id = user?.id;
+
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -100,8 +103,8 @@ const Header = () => {
                 </Button>
               </Link>
 
-              <Menu placement="bottom-end" className="hidden lg:inline-block">
-                <MenuHandler className="hidden lg:inline-block">
+              <Menu placement="bottom-end" className="">
+                <MenuHandler className="">
                   <Button variant="text" size="sm" className="p-2">
                     <Avatar
                       src={
@@ -121,6 +124,13 @@ const Header = () => {
                   >
                     <UserCircleIcon className="w-5" />
                     Profile
+                  </MenuItem>
+
+                  <MenuItem>
+                    <Link to={"/addjob"} className="flex gap-2">
+                      <PencilSquareIcon className="h-5 w-5" />
+                      Post a Job
+                    </Link>
                   </MenuItem>
 
                   <MenuItem
@@ -164,82 +174,63 @@ const Header = () => {
             </>
           )}
 
-          <IconButton
-            variant="text"
-            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-            ripple={false}
-            onClick={() => setOpenNav(!openNav)}
-          >
-            {openNav ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
-          </IconButton>
+          {!id && (
+            <IconButton
+              variant="text"
+              className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+              ripple={false}
+              onClick={() => setOpenNav(!openNav)}
+            >
+              {openNav ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  className="h-6 w-6"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </IconButton>
+          )}
         </div>
       </div>
+
       <Collapse open={openNav} className="">
         <hr />
-        {id && (
-          <>
-            <Link to={"/addjob"}>
-              <Button variant="gradient" size="sm" fullWidth className="my-10">
-                <span>Add Job</span>
-              </Button>
-            </Link>
-            <Link to={"/login"}>
-              <Button
-                variant="gradient"
-                size="sm"
-                fullWidth
-                className="my-5"
-                onClick={Logout}
-              >
-                <span>Logout</span>
-              </Button>
-            </Link>
-          </>
-        )}
 
-        {!id && (
-          <>
-            <Link to={"/register"}>
-              <Button variant="gradient" size="sm" fullWidth className="my-10">
-                <span>Register</span>
-              </Button>
-            </Link>
-            <Link to={"/login"}>
-              <Button variant="gradient" size="sm" fullWidth className="my-5">
-                <span>Login</span>
-              </Button>
-            </Link>
-          </>
-        )}
+        <>
+          <Link to={"/register"}>
+            <Button variant="gradient" size="sm" fullWidth className="my-5">
+              <span>Register</span>
+            </Button>
+          </Link>
+          <Link to={"/login"}>
+            <Button variant="gradient" size="sm" fullWidth className="my-5">
+              <span>Login</span>
+            </Button>
+          </Link>
+        </>
       </Collapse>
     </Navbar>
   );
