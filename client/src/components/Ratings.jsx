@@ -29,7 +29,7 @@ const Ratings = () => {
                 you &quot;
               </Typography>
               <Avatar
-                src="https://pankajthakur.netlify.app/assets/profile-pic-8727f2af.webp"
+                src="https://www.pankajktech.me/assets/about-3c428769.webp"
                 alt="image"
                 size="lg"
               />

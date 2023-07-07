@@ -13,9 +13,7 @@ const UserProfile = () => {
     <div className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100">
       <div className="flex relative flex-col items-center justify-center bg-blue-gray-50 min-h-[30vh] mb-10 text-black drop-shadow-xl p-5">
         <img
-          src={
-            "https://pankajthakur.netlify.app/assets/profile-pic-8727f2af.webp"
-          }
+          src={"https://www.pankajktech.me/assets/about-3c428769.webp"}
           loading="lazy"
           alt={user?.name}
           className="absolute -top-10 w-32 h-32 rounded-full border-4 border-white"

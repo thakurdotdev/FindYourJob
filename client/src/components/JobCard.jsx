@@ -53,6 +53,16 @@ const JobCard = ({
                     <PencilSquareIcon strokeWidth={2} className="h-5 w-5" />
                   </Button>
                 </Link>
+                <Link to={`/job/${id}`}>
+                  <Button
+                    variant="text"
+                    size="sm"
+                    className="flex items-center gap-2"
+                  >
+                    Details
+                    <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
+                  </Button>
+                </Link>
               </div>
             ) : (
               <Link to={`/job/${id}`}>
@@ -61,7 +71,7 @@ const JobCard = ({
                   size="sm"
                   className="flex items-center gap-2"
                 >
-                  view details
+                  Details
                   <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
                 </Button>
               </Link>

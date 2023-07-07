@@ -108,7 +108,7 @@ const Header = () => {
                   <Button variant="text" size="sm" className="p-2">
                     <Avatar
                       src={
-                        "https://pankajthakur.netlify.app/assets/profile-pic-8727f2af.webp"
+                        "https://www.pankajktech.me/assets/about-3c428769.webp"
                       }
                       withBorder={true}
                       size="sm"
