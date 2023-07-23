@@ -7,6 +7,10 @@ import getOneJobController from "../controllers/getOneJobController.js";
 
 const jobRoute = express.Router();
 
+jobRoute.get("/", (req, res) => {
+  res.send("Welcome to the Find Your Job API");
+});
+
 jobRoute.post("/addJobs", addJobController);
 
 jobRoute.get("/getJobs", getJobsController);

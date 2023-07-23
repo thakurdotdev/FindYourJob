@@ -17,7 +17,7 @@ const AllJobs = () => {
   const getJobs = async () => {
     try {
       const response = await fetch(
-        "https://job-portal-app-kzk0.onrender.com/getJobs",
+        "https://cute-erin-cobra-kit.cyclic.app/getJobs",
         {
           method: "GET",
           headers: {

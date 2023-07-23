@@ -24,7 +24,7 @@ const EditJob = () => {
   const getJob = async () => {
     try {
       const response = await fetch(
-        `https://job-portal-app-kzk0.onrender.com/job/${id}`
+        `https://cute-erin-cobra-kit.cyclic.app/job/${id}`
       );
       const jsonData = await response.json();
       const { company, position, workLocation, locationType } = jsonData.job;

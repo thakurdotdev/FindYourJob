@@ -18,7 +18,7 @@ const Register = () => {
     try {
       const body = { name, email, password };
       const response = await fetch(
-        "https://job-portal-app-kzk0.onrender.com/register",
+        "https://cute-erin-cobra-kit.cyclic.app/register",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

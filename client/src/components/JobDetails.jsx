@@ -15,7 +15,7 @@ const JobDetails = () => {
   const [job, setJob] = useState(null);
 
   useEffect(() => {
-    fetch(`https://job-portal-app-kzk0.onrender.com/job/${id}`)
+    fetch(`https://cute-erin-cobra-kit.cyclic.app/job/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setJob(data.job);

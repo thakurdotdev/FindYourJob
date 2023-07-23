@@ -33,7 +33,7 @@ const Header = () => {
   //Function to fetch user data
   const fetchUser = async () => {
     const response = await fetch(
-      "https://job-portal-app-kzk0.onrender.com/profile",
+      "https://cute-erin-cobra-kit.cyclic.app/profile",
       {
         credentials: "include",
       }
@@ -46,7 +46,7 @@ const Header = () => {
   const Logout = async () => {
     try {
       const response = await fetch(
-        "https://job-portal-app-kzk0.onrender.com/logout",
+        "https://cute-erin-cobra-kit.cyclic.app/logout",
         {
           method: "POST",
           headers: {

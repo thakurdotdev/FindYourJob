@@ -18,7 +18,7 @@ const CreateJob = () => {
     e.preventDefault();
     try {
       const body = { company, position, workLocation, locationType };
-      await fetch("https://job-portal-app-kzk0.onrender.com/addJobs", {
+      await fetch("https://cute-erin-cobra-kit.cyclic.app/addJobs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

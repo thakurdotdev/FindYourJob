@@ -11,7 +11,6 @@ import { UserContext } from "../Context/userContext";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [redirect, setRedirect] = useState(false);
   const [emailError, showemailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [message, showMessage] = useState(false);
@@ -21,7 +20,7 @@ const Login = () => {
   const login = async (email, password) => {
     const body = { email, password };
     const response = await fetch(
-      "https://job-portal-app-kzk0.onrender.com/login",
+      "https://cute-erin-cobra-kit.cyclic.app/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -42,7 +41,6 @@ const Login = () => {
           setUser(data);
           showMessage(true);
           setTimeout(() => {
-            setRedirect(true);
             window.location.href = "/jobs";
           }, 1000);
           break;
