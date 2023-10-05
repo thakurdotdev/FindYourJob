@@ -20,6 +20,9 @@ const loginController = async (req, res) => {
     });
   }
 
+  // Expires in 1 day
+  const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60 * 24;
+
   if (isMatch) {
     const token = jwt.sign(
       { id: user._id, email: user.email, name: user.name },
@@ -27,8 +30,8 @@ const loginController = async (req, res) => {
     );
     res
       .cookie("token", token, {
-        domain: "job-portal-app-kzk0.onrender.com",
-        expires: new Date(Date.now() + 86400000), // 1 day
+        domain: "cute-erin-cobra-kit.cyclic.app",
+        expires: expirationTime,
         httpOnly: true,
         sameSite: "none",
         secure: true,
