@@ -21,7 +21,6 @@ const loginController = async (req, res) => {
   }
 
   // Expires in 1 day
-  const expirationTime = Math.floor(Date.now() / 1000) + 60 * 60 * 24;
 
   if (isMatch) {
     const token = jwt.sign(
@@ -31,7 +30,7 @@ const loginController = async (req, res) => {
     res
       .cookie("token", token, {
         domain: "cute-erin-cobra-kit.cyclic.app",
-        expires: expirationTime,
+        expires: new Date(Date.now() + 86400000),
         httpOnly: true,
         sameSite: "none",
         secure: true,
