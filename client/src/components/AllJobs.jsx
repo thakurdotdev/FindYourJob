@@ -19,7 +19,7 @@ const AllJobs = () => {
   const getJobs = async () => {
     try {
       const response = await fetch(
-        `https://cute-erin-cobra-kit.cyclic.app?page=${page}`,
+        `https://cute-erin-cobra-kit.cyclic.app/getJobs?page=${page}`,
         {
           method: "GET",
           headers: {
@@ -148,7 +148,11 @@ const AllJobs = () => {
               />
             ))}
 
-          {loading && <JobCardLoader />}
+          {loading ? (
+            <JobCardLoader />
+          ) : (
+            <h1 className="mx-auto my-5 text-lg">No More Jobs Available</h1>
+          )}
         </motion.div>
       )}
     </section>
