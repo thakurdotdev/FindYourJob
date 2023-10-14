@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import JobCard from "./JobCard";
-import { JobLoader } from "./Loader.jsx";
+import { JobCardLoader, JobLoader } from "./Loader.jsx";
 import { motion } from "framer-motion";
 
 import homeImg from "../assets/bg.jpg";
@@ -9,15 +9,17 @@ import { Button, Input, Typography } from "@material-tailwind/react";
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getJobs();
-  }, []);
+  }, [page]);
 
   const getJobs = async () => {
     try {
       const response = await fetch(
-        "https://cute-erin-cobra-kit.cyclic.app/getJobs",
+        `https://cute-erin-cobra-kit.cyclic.app?page=${page}`,
         {
           method: "GET",
           headers: {
@@ -28,11 +30,26 @@ const AllJobs = () => {
       );
       const jsonData = await response.json();
       const data = jsonData.jobs;
-      setJobs(data);
+      setJobs((prev) => [...prev, ...data]);
+      setLoading(false);
     } catch (err) {
       console.error(err.message);
     }
   };
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setLoading(true);
+      setPage((prev) => prev + 1);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
 
   return (
     <section className="bg-gray-100 min-h-[87vh]">
@@ -130,6 +147,8 @@ const AllJobs = () => {
                 }}
               />
             ))}
+
+          {loading && <JobCardLoader />}
         </motion.div>
       )}
     </section>
