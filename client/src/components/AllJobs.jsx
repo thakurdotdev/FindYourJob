@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import JobCard from "./JobCard";
-import { JobCardLoader, JobLoader } from "./Loader.jsx";
+import { LoaderCard } from "./Loader.jsx";
 import { motion } from "framer-motion";
+import InfiniteScroll from "react-infinite-scroll-component";
+import axios from "axios";
 
 import homeImg from "../assets/bg.jpg";
 import { Button, Input, Typography } from "@material-tailwind/react";
@@ -10,46 +12,24 @@ const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [totalJobs, setTotalJobs] = useState(0);
+  const LIMIT = 10;
 
   useEffect(() => {
     getJobs();
-  }, [page]);
+  }, []);
 
-  const getJobs = async () => {
-    try {
-      const response = await fetch(
-        `https://cute-erin-cobra-kit.cyclic.app/getJobs?page=${page}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const jsonData = await response.json();
-      const data = jsonData.jobs;
-      setJobs((prev) => [...prev, ...data]);
-      setLoading(false);
-    } catch (err) {
-      console.error(err.message);
-    }
+  const getJobs = () => {
+    axios
+      .get("https://cute-erin-cobra-kit.cyclic.app/getJobs", {
+        params: { page: page, size: LIMIT },
+      })
+      .then(({ data }) => {
+        setPage(page + 1);
+        setJobs([...jobs, ...data.jobs]);
+        setTotalJobs(data.total);
+      });
   };
-
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop + 1 >=
-      document.documentElement.scrollHeight
-    ) {
-      setLoading(true);
-      setPage((prev) => prev + 1);
-    }
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  });
 
   return (
     <section className="bg-gray-100 min-h-[87vh]">
@@ -112,49 +92,55 @@ const AllJobs = () => {
         </div>
       </div>
 
-      {jobs.length === 0 ? (
-        <JobLoader />
-      ) : (
-        <motion.div
-          className="flex flex-wrap mx-auto md:mx-52"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {jobs
-            .filter((item) => {
-              if (search === "") {
-                return item;
-              } else if (
-                item.position.toLowerCase().includes(search.toLowerCase()) ||
-                item.company.toLowerCase().includes(search.toLowerCase()) ||
-                item.workLocation.toLowerCase().includes(search.toLowerCase())
-              ) {
-                return item;
-              }
-            })
-            .map((job) => (
-              <JobCard
-                key={job._id}
-                job={{
-                  company: job.company,
-                  position: job.position,
-                  workLocation: job.workLocation,
-                  locationType: job.locationType,
-                  id: job._id,
-                  author: job?.author,
-                  updatedAt: job?.updatedAt,
-                }}
-              />
-            ))}
-
-          {loading ? (
-            <JobCardLoader />
-          ) : (
-            <h1 className="mx-auto my-5 text-lg">No More Jobs Available</h1>
-          )}
-        </motion.div>
-      )}
+      <InfiniteScroll
+        dataLength={jobs.length}
+        next={getJobs}
+        hasMore={jobs.length < totalJobs}
+        loader={<LoaderCard />}
+        endMessage={
+          <h1 className="mx-auto text-center my-5 text-2xl font-bold">
+            No More Jobs Available
+          </h1>
+        }
+      >
+        {jobs.length === 0 ? (
+          <LoaderCard />
+        ) : (
+          <motion.div
+            className="flex flex-wrap mx-auto md:mx-52"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {jobs
+              .filter((item) => {
+                if (search === "") {
+                  return item;
+                } else if (
+                  item.position.toLowerCase().includes(search.toLowerCase()) ||
+                  item.company.toLowerCase().includes(search.toLowerCase()) ||
+                  item.workLocation.toLowerCase().includes(search.toLowerCase())
+                ) {
+                  return item;
+                }
+              })
+              .map((job) => (
+                <JobCard
+                  key={job._id}
+                  job={{
+                    company: job.company,
+                    position: job.position,
+                    workLocation: job.workLocation,
+                    locationType: job.locationType,
+                    id: job._id,
+                    author: job?.author,
+                    updatedAt: job?.updatedAt,
+                  }}
+                />
+              ))}
+          </motion.div>
+        )}
+      </InfiniteScroll>
     </section>
   );
 };
