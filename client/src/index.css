@@ -58,45 +58,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* This centers it vertically on the page */
+  height: 50vh; /* This centers it vertically on the page */
 }
-
-.progress {
-  background-color: #ffffff;
-  width: 220px;
-  height: 20px;
-  border-radius: 100px;
-  overflow: hidden;
-  backface-visibility: hidden;
-}
-
-.inner {
-  background-image: linear-gradient(
-    to left,
-    #00cdac,
-    #00c2c9,
-    #00b4e3,
-    #00a2f1,
-    #008cef,
-    #0088eb,
-    #0085e6,
-    #0081e2,
-    #0090de,
-    #009bd2,
-    #00a3c1,
-    #02aab0
+.loader {
+  --s: 5px;
+  /* control the size */
+  width: calc(10 * var(--s));
+  display: grid;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  -webkit-mask: radial-gradient(
+    50% 50%,
+    #0000 calc(99% - 2 * var(--s)),
+    #000 calc(101% - 2 * var(--s))
   );
-  height: 100%;
-  transform-origin: left;
-  animation: progress 2s infinite;
+  animation: r 2s linear infinite;
 }
 
-@keyframes progress {
-  0% {
-    transform: scaleX(10%) translateX(-10%);
-  }
+.loader:before {
+  content: "";
+  /* adjust the colors below */
+  background: conic-gradient(
+    from 25deg,
+    #01a2f8 25%,
+    #fa2402 0 50%,
+    #fdb3b0 0 75%,
+    #02dde1 0
+  );
+  -webkit-mask: repeating-conic-gradient(#0000 0 25deg, #000 23% 25%),
+    radial-gradient(var(--s) at var(--s) 50%, #000 97%, #0000)
+      left/calc(100% - 2 * var(--s)) 100% repeat-x,
+    radial-gradient(var(--s) at 50% var(--s), #000 97%, #0000) top / 100%
+      calc(100% - 2 * var(--s)) repeat-y;
+}
 
-  100% {
-    transform: scaleX(80%) translateX(150%);
+@keyframes r {
+  to {
+    transform: rotate(1turn);
   }
 }

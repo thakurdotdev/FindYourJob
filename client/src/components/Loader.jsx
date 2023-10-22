@@ -36,9 +36,7 @@ export const Loader = () => {
 export const LoaderCard = () => {
   return (
     <div class="center">
-      <div class="progress">
-        <div class="inner"></div>
-      </div>
+      <div class="loader"></div>
     </div>
   );
 };
