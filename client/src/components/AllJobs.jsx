@@ -19,16 +19,30 @@ const AllJobs = () => {
     getJobs();
   }, []);
 
-  const getJobs = () => {
-    axios
-      .get("https://cute-erin-cobra-kit.cyclic.app/getJobs", {
+  const cacheKey = "cachedJobs"; // Define a key for your local storage cache
+
+  const getJobs = async () => {
+    // Check local storage for cached data
+    const cachedData = localStorage.getItem(cacheKey);
+    if (cachedData) {
+      const cachedJobs = JSON.parse(cachedData);
+      setJobs(cachedJobs);
+    }
+
+    const { data } = await axios.get(
+      "https://cute-erin-cobra-kit.cyclic.app/getJobs",
+      {
         params: { page: page, size: LIMIT },
-      })
-      .then(({ data }) => {
-        setPage(page + 1);
-        setJobs([...jobs, ...data.jobs]);
-        setTotalJobs(data.total);
-      });
+      }
+    );
+
+    // Update the cache in local storage with the newly fetched data
+    const updatedJobs = [...jobs, ...data.jobs];
+    localStorage.setItem(cacheKey, JSON.stringify(updatedJobs));
+
+    setPage(page + 1);
+    setJobs(updatedJobs);
+    setTotalJobs(data.total);
   };
 
   return (

@@ -14,7 +14,7 @@ app.use(Express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["https://landyourjob.netlify.app", "http://localhost:5173"],
+    origin: ["https://findyourjob.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
   })
@@ -22,8 +22,15 @@ app.use(
 
 app.use(authRoute, jobRoute);
 
-DataBase();
+async function startServer() {
+  try {
+    await DataBase();
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
 
-app.listen(port, () => {
-  console.log(`Port is Running on ${port} `);
-});
+startServer();

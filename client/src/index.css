@@ -67,8 +67,13 @@
   display: grid;
   aspect-ratio: 1;
   border-radius: 50%;
+  mask: radial-gradient(
+    closest-side at 50% 50%,
+    #0000 calc(99% - 2 * var(--s)),
+    #000 calc(101% - 2 * var(--s))
+  );
   -webkit-mask: radial-gradient(
-    50% 50%,
+    closest-side at 50% 50%,
     #0000 calc(99% - 2 * var(--s)),
     #000 calc(101% - 2 * var(--s))
   );
@@ -85,6 +90,12 @@
     #fdb3b0 0 75%,
     #02dde1 0
   );
+  mask: repeating-conic-gradient(#0000 0 25deg, #000 23% 25%),
+    radial-gradient(var(--s) at var(--s) 50%, #000 97%, #0000)
+      left/calc(100% - 2 * var(--s)) 100% repeat-x,
+    radial-gradient(var(--s) at 50% var(--s), #000 97%, #0000) top / 100%
+      calc(100% - 2 * var(--s)) repeat-y;
+
   -webkit-mask: repeating-conic-gradient(#0000 0 25deg, #000 23% 25%),
     radial-gradient(var(--s) at var(--s) 50%, #000 97%, #0000)
       left/calc(100% - 2 * var(--s)) 100% repeat-x,

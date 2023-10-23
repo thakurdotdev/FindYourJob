@@ -7,7 +7,7 @@ const getJobsController = async (req, res) => {
   try {
     const skip = (page - 1) * size;
     const total = await jobModel.countDocuments();
-    const jobs = await jobModel.find().skip(skip).limit(size);
+    const jobs = await jobModel.find().sort({ _id: -1 }).skip(skip).limit(size);
 
     res.json({
       jobs,
