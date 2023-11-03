@@ -11,7 +11,7 @@ import JobDetails from "./components/JobDetails";
 import Hero from "./components/Hero";
 import Error from "./components/Error";
 import ScrollToTop from "./components/ScrollToTop";
-import UserProfile from "./components/UserProfile";
+import UserProfile from "./components/Profile/UserProfile";
 
 const App = () => {
   return (
@@ -38,7 +38,7 @@ const appRouter = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/edit/:id", element: <EditJob /> },
       { path: "/job/:id", element: <JobDetails /> },
-      { path: "/profile", element: <UserProfile /> },
+      { path: "/user/profile", element: <UserProfile /> },
     ],
   },
 ]);

@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ToastContainer, toast } from "react-toastify";
-
-import "react-toastify/dist/ReactToastify.css";
+import { toast, Toaster } from "react-hot-toast";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { Loader } from "./Loader";
 
@@ -85,24 +83,12 @@ const EditJob = () => {
       transition={{ duration: 0.5 }}
       className="flex justify-center items-center min-h-[83vh] bg-gray-100"
     >
-      {edited &&
-        (toast(" Job Edited Successfully", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-        }),
-        (<ToastContainer />))}
+      <div>
+        <Toaster position="top-right" reverseOrder={false} />
+      </div>
+      {edited && toast.success("Job Edited Successfully")}
       {deleted &&
-        (toast(" Job Deleted Successfully", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-        }),
-        (<ToastContainer />))}
+        toast.success("Job Deleted Successfully, Redirecting to Jobs Page")}
       <Card
         color="white"
         shadow={true}

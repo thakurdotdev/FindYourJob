@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
 import { motion } from "framer-motion";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, Toaster } from "react-hot-toast";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 const CreateJob = () => {
@@ -44,12 +43,10 @@ const CreateJob = () => {
       transition={{ duration: 0.5 }}
       className="flex justify-center items-center min-h-[83vh] bg-gray-100"
     >
-      {Added &&
-        (toast(" Job Added Successfully", {
-          position: "top-center",
-          autoClose: 1000,
-        }),
-        (<ToastContainer />))}
+      {Added && toast.success("Successfully added job!")}
+      <div>
+        <Toaster position="top-right" reverseOrder={false} />
+      </div>
       <Card
         color="white"
         shadow={true}

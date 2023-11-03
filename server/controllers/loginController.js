@@ -20,8 +20,6 @@ const loginController = async (req, res) => {
     });
   }
 
-  // Expires in 1 day
-
   if (isMatch) {
     const token = jwt.sign(
       { id: user._id, email: user.email, name: user.name },

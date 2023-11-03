@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, Toaster } from "react-hot-toast";
 import Logo from "../assets/FYJLogo.png";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { motion } from "framer-motion";
@@ -68,15 +67,10 @@ const Login = () => {
       transition={{ duration: 0.5 }}
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
-      {message &&
-        (toast("Login Successful!", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-        }),
-        (<ToastContainer />))}
+      <div>
+        <Toaster position="top-right" reverseOrder={false} />
+      </div>
+      {message && toast.success("Successfully logged in!")}
       <Card color="white" shadow={true} className="p-8 items-center">
         <Typography variant="h4" color="blue-gray">
           Login To

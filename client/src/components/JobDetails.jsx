@@ -37,13 +37,14 @@ const JobDetails = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="w-full flex flex-col justify-center items-center bg-blue-gray-50 min-h-[30vh] mb-10 text-black drop-shadow-xl p-5">
-        <h2 className="text-xl md:text-4xl text-center font-bold font-heading tracking-px-n leading-none mb-2">
-          {job?.position}
-        </h2>
-        <p className="text-center text-lg md:text-2xl font-semibold mb-6">
-          ( {job?.company})
-        </p>
+      <div className="w-full flex flex-col justify-center items-center min-h-[30vh] mb-10 text-black ring-1 p-5">
+        <div className="flex justify-center items-center w-full md:w-1/2">
+          <p className="text-center text-3xl font-semibold">
+            {job?.company}---
+          </p>
+          <h2 className="md:text-2xl text-center font-bold">{job?.position}</h2>
+        </div>
+
         <div className="flex flex-col justify-center items-center md:gap-5 md:flex-row w-full md:w-1/2 ">
           <Typography className="flex items-center my-2">
             <ClockIcon className="w-5 h-5 mr-2" />
@@ -77,7 +78,7 @@ const JobDetails = () => {
           <Typography variant="h5" className="my-2">
             The Role
           </Typography>
-          <Typography variant="paragraph">
+          <Typography variant="paragraph" className="text-justify">
             In the world of AI, behavioural predictions are leading the charge
             to better machine learning. There is so much happening in the AI
             space. Advances in the economic sectors have seen automated business
@@ -90,7 +91,7 @@ const JobDetails = () => {
           <Typography variant="h5" className="mb-2 mt-10">
             Requirments
           </Typography>
-          <Typography variant="paragraph">
+          <Typography variant="paragraph" className="text-justify">
             In the world of AI, behavioural predictions are leading the charge
             to better machine learning. There is so much happening in the AI
             space. Advances in the economic sectors have seen automated business

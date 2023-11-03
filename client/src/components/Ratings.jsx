@@ -18,7 +18,7 @@ const Ratings = () => {
           .map((_, i) => (
             <div
               key={i}
-              className="px-8 text-center max-w-md bg-white shadow bg-opacity-50 border-b-2 border-b-blue-300 backdrop-blur-md p-5"
+              className="px-8 text-center max-w-md bg-white shadow bg-opacity-50 ring-1 ring-blue-300 backdrop-blur-md p-5"
             >
               <Typography
                 variant="h5"
@@ -29,7 +29,7 @@ const Ratings = () => {
                 you &quot;
               </Typography>
               <Avatar
-                src="https://www.pankajktech.me/assets/about-3c428769.webp"
+                src="https://pankajktech.me/assets/about-3c428769.webp"
                 alt="image"
                 size="lg"
               />

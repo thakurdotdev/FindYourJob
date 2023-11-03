@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/FYJLogo.png";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
+import { toast, Toaster } from "react-hot-toast";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 
 const Register = () => {
@@ -51,15 +50,10 @@ const Register = () => {
       transition={{ duration: 0.5 }}
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
-      {message &&
-        (toast(" Registered Successfully", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-        }),
-        (<ToastContainer />))}
+      <div>
+        <Toaster position="top-right" reverseOrder={false} />
+      </div>
+      {message && toast.success("Successfully registered!")}
       <Card color="white" shadow={true} className="items-center p-8">
         <Typography variant="h4" color="blue-gray">
           Register To

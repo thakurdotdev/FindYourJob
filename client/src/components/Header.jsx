@@ -107,9 +107,7 @@ const Header = () => {
                 <MenuHandler className="">
                   <Button variant="text" size="sm" className="p-2">
                     <Avatar
-                      src={
-                        "https://www.pankajktech.me/assets/about-3c428769.webp"
-                      }
+                      src={"https://pankajktech.me/assets/about-3c428769.webp"}
                       withBorder={true}
                       size="sm"
                       alt="logo"
@@ -119,7 +117,7 @@ const Header = () => {
                 </MenuHandler>
                 <MenuList>
                   <MenuItem
-                    onClick={() => Navigate(`/profile`)}
+                    onClick={() => Navigate(`/user/profile`)}
                     className="flex items-center gap-2"
                   >
                     <UserCircleIcon className="w-5" />

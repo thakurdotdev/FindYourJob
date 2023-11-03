@@ -7,7 +7,6 @@ import Ratings from "./Ratings";
 import { BriefcaseIcon } from "@heroicons/react/24/outline";
 import { Button } from "@material-tailwind/react";
 import heroImg from "../assets/hero-img.svg";
-import homeImg from "../assets/bg.jpg";
 import Contact from "./Contact";
 
 const Hero = () => {
@@ -15,14 +14,7 @@ const Hero = () => {
   const id = user?.id;
 
   return (
-    <main
-      style={{
-        backgroundImage: `url(${homeImg})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <main>
       <div className="flex w-full flex-col justify-around md:px-40 min-h-[90vh]">
         <div className="flex flex-col p-5 md:my-5 ">
           <motion.h1
