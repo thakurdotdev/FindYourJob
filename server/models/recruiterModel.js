@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const recuiterModel = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -15,16 +15,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    profilePicture: {
-      type: String,
-      default: "",
-    },
-    resume: {
-      type: String,
-      default: "",
-    },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("user", userSchema);
+export default mongoose.model("recruiter", recuiterModel);

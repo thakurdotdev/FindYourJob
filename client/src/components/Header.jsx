@@ -23,12 +23,20 @@ import {
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, Logout } = useContext(UserContext);
   const Navigate = useNavigate();
 
   useEffect(() => {
     fetchUser();
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await Logout(); // Call the logout function from the context
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
   //Function to fetch user data
   const fetchUser = async () => {
@@ -43,26 +51,6 @@ const Header = () => {
   };
 
   //Function to logout user
-  const Logout = async () => {
-    try {
-      const response = await fetch(
-        "https://cute-erin-cobra-kit.cyclic.app/logout",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
-      if (response.status === 200) {
-        setUser(null);
-        window.location.href = "/";
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const id = user?.id;
 
@@ -132,7 +120,7 @@ const Header = () => {
                   </MenuItem>
 
                   <MenuItem
-                    onClick={Logout}
+                    onClick={handleLogout}
                     className="flex items-center gap-2"
                   >
                     <PowerIcon className="h-5 w-5" />

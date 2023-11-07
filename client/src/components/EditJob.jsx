@@ -24,8 +24,8 @@ const EditJob = () => {
       const response = await fetch(
         `https://cute-erin-cobra-kit.cyclic.app/job/${id}`
       );
-      const jsonData = await response.json();
-      const { company, position, workLocation, locationType } = jsonData.job;
+      const jobData = await response.json();
+      const { company, position, workLocation, locationType } = jobData.job;
       setCompany(company);
       setPosition(position);
       setWorkLocation(workLocation);

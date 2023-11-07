@@ -6,13 +6,29 @@ import {
   ListItemPrefix,
 } from "@material-tailwind/react";
 import {
-  PresentationChartBarIcon,
   UserCircleIcon,
   PowerIcon,
   DocumentIcon,
+  PhoneArrowDownLeftIcon,
 } from "@heroicons/react/24/solid";
 
+import { useContext } from "react";
+
+import { UserContext } from "../../Context/userContext";
+import { Link, useNavigate } from "react-router-dom";
 const Sidebar = () => {
+  const { Logout } = useContext(UserContext);
+
+  const Navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await Logout(); // Call the logout function from the context
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   return (
     <Card className="h-[calc(100vh-8rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
       <div className="mb-2 p-4">
@@ -27,17 +43,28 @@ const Sidebar = () => {
           </ListItemPrefix>
           Profile
         </ListItem>
-        <ListItem>
+        <ListItem onClick={() => Navigate("/jobs")}>
           <ListItemPrefix>
-            <DocumentIcon className="h-5 w-5" />
+            <PhoneArrowDownLeftIcon className="h-5 w-5" />
           </ListItemPrefix>
-          Resume
+          Apply for Jobs
         </ListItem>
+        <Link
+          to="https://drive.google.com/file/d/1Yd3Z6GO8-vxHOldYckjj42sf8mjP2SgP/view"
+          target="_blank"
+        >
+          <ListItem>
+            <ListItemPrefix>
+              <DocumentIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            Resume
+          </ListItem>
+        </Link>
         <ListItem>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>
-          Log Out
+          <button onClick={handleLogout}>Logout</button>
         </ListItem>
       </List>
     </Card>

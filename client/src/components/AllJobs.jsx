@@ -5,9 +5,22 @@ import { motion } from "framer-motion";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 
-import homeImg from "../assets/bg.jpg";
-import { Button, Input, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Input,
+  Select,
+  Option,
+  Typography,
+} from "@material-tailwind/react";
 
+const searchKeywords = [
+  "Frontend Developer",
+  "Remote",
+  "Internship",
+  "Backend",
+  "Fullstack",
+  "Software Developer",
+];
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
@@ -46,16 +59,8 @@ const AllJobs = () => {
   };
 
   return (
-    <section className="bg-gray-100 min-h-[87vh]">
-      <div
-        style={{
-          backgroundImage: `url(${homeImg})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="flex flex-col justify-center items-center w-full min-h-[30vh] mb-10"
-      >
+    <section className="min-h-[87vh]">
+      <div className="flex flex-col justify-center items-center w-full min-h-[30vh] drop-shadow-sm shadow-lg mb-20">
         <Typography className="text-light-blue-900 text-2xl md:text-4xl font-bold my-5">
           Search Your Dream Job
         </Typography>
@@ -71,30 +76,17 @@ const AllJobs = () => {
           </div>
         </form>
         <div className="w-full flex flex-wrap justify-center items-center gap-5 mt-5">
-          <Button
-            variant="text"
-            className="bg-white bg-opacity-50 backdrop-blur-md shadow-md"
-            size="sm"
-            onClick={() => setSearch("Remote")}
-          >
-            Remote
-          </Button>
-          <Button
-            variant="text"
-            className="bg-white bg-opacity-50 backdrop-blur-md shadow-md"
-            size="sm"
-            onClick={() => setSearch("Intern")}
-          >
-            Internship
-          </Button>
-          <Button
-            variant="text"
-            className="bg-white bg-opacity-50 backdrop-blur-md shadow-md"
-            size="sm"
-            onClick={() => setSearch("Frontend")}
-          >
-            Frontend
-          </Button>
+          {searchKeywords.map((keyword) => (
+            <Button
+              variant="text"
+              className="bg-white bg-opacity-50 backdrop-blur-md shadow-md"
+              size="sm"
+              onClick={() => setSearch(keyword)}
+            >
+              {keyword}
+            </Button>
+          ))}
+
           <Button
             variant="text"
             className="bg-white bg-opacity-50 backdrop-blur-md shadow-md"
