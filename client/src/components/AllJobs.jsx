@@ -8,8 +8,6 @@ import axios from "axios";
 import {
   Button,
   Input,
-  Select,
-  Option,
   Typography,
 } from "@material-tailwind/react";
 
@@ -59,8 +57,8 @@ const AllJobs = () => {
   };
 
   return (
-    <section className="min-h-[87vh]">
-      <div className="flex flex-col justify-center items-center w-full min-h-[30vh] drop-shadow-sm shadow-lg mb-20">
+    <section className="min-h-[87vh]  bg-gray-200">
+      <div className="flex bg-gray-100 flex-col justify-center items-center w-full min-h-[30vh] drop-shadow-sm shadow-lg mb-20">
         <Typography className="text-light-blue-900 text-2xl md:text-4xl font-bold my-5">
           Search Your Dream Job
         </Typography>

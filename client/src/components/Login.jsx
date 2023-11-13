@@ -56,7 +56,7 @@ const Login = () => {
           }, 2000);
       }
     } catch (err) {
-      console.error(err.message);
+      console.log(err.message);
     }
   };
 

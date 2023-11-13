@@ -11,10 +11,10 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="bg-gray-200 flex py-5">
       <Sidebar />
-      <div className="flex flex-col p-10">
-        <div className="flex flex-col p-10 items-center justify-center ring-1 shadow-md">
+      <div className="flex flex-col px-5">
+        <div className="flex rounded-md bg-white flex-col drop-shadow-lg p-10 items-center justify-center">
           <div className="flex flex-row items-center justify-center">
             <img
               src={"https://pankajktech.me/assets/about-3c428769.webp"}
@@ -29,8 +29,8 @@ const UserProfile = () => {
           </div>
         </div>
         <div className="flex flex-row gap-10 mt-10">
-          <div class="flex flex-col p-10 ring-1 shadow-md">
-            <h2 class="text-xl font-bold mb-4">Education</h2>
+          <div class="flex rounded-md flex-col p-10 bg-white drop-shadow-lg">
+            <h2 class="text-xl font-bold border-b-2 mb-4 text-blue-500">Education</h2>
 
             <div class="mb-4">
               <h3 class="text-lg font-semibold">University of Tailwind</h3>
@@ -46,8 +46,8 @@ const UserProfile = () => {
               <p class="text-sm text-gray-500">2015 - 2017</p>
             </div>
           </div>
-          <div class="flex flex-col p-10  ring-1 shadow-md">
-            <h2 class="text-xl font-bold mb-4">Skills</h2>
+          <div class="flex rounded-md flex-col p-10  bg-white drop-shadow-lg">
+            <h2 class="text-xl font-bold border-b-2 text-blue-500 mb-4">Skills</h2>
 
             <div class="mb-4">
               <h3 class="text-lg font-semibold">Web Development</h3>

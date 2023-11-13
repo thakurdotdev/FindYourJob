@@ -36,13 +36,13 @@ const JobDetails = () => {
   });
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="w-full flex flex-col justify-center items-center min-h-[30vh] mb-10 text-black ring-1 p-5">
-        <div className="flex justify-center items-center w-full md:w-1/2">
-          <p className="text-center text-3xl font-semibold">
-            {job?.company}---
+    <div className="flex bg-gray-200  flex-col items-center">
+      <div className="w-full bg-gray-100 flex flex-col justify-center items-center min-h-[30vh] mb-10 text-black p-5">
+        <div className="flex flex-col justify-center items-center w-full md:w-1/2">
+          <h2 className="md:text-4xl text-center font-bold">{job?.position}</h2>
+          <p className="text-center text-2xl text-blue-600 font-semibold">
+            {job?.company}
           </p>
-          <h2 className="md:text-2xl text-center font-bold">{job?.position}</h2>
         </div>
 
         <div className="flex flex-col justify-center items-center md:gap-5 md:flex-row w-full md:w-1/2 ">
@@ -55,17 +55,7 @@ const JobDetails = () => {
             {job?.workLocation},{job?.locationType}
           </Typography>
         </div>
-        <Button variant="gradient" color="cyan" className="my-3">
-          Apply Now
-        </Button>
-      </div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col-reverse md:flex-row w-full md:min-h-[72vh] justify-center mb-5"
-      >
-        <div className="w-[90%] md:w-1/2  px-4">
+        <div className="flex gap-4 my-5">
           <Link to={"/jobs"}>
             <Button
               variant="text"
@@ -75,6 +65,18 @@ const JobDetails = () => {
               All Jobs
             </Button>
           </Link>
+          <Button variant="gradient" color="cyan" className="">
+            Apply Now
+          </Button>
+        </div>
+      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col-reverse md:flex-row w-full md:min-h-[72vh] justify-center mb-5"
+      >
+        <div className="w-[90%] md:w-1/2  px-4">
           <Typography variant="h5" className="my-2">
             The Role
           </Typography>
