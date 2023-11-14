@@ -15,22 +15,22 @@ import {
 import { useContext } from "react";
 
 import { UserContext } from "../../Context/userContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom"; // Import NavLink from react-router-dom
+
 const Sidebar = () => {
   const { Logout } = useContext(UserContext);
-
   const Navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      await Logout(); // Call the logout function from the context
+      await Logout();
     } catch (error) {
       console.error("Logout error:", error);
     }
   };
 
   return (
-    <Card className="h-[calc(100vh-8rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+    <Card className="h-[calc(100vh-8rem)] w-full hidden md:block max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
       <div className="mb-2 p-4">
         <Typography variant="h5" color="blue-gray">
           Profile
@@ -60,11 +60,15 @@ const Sidebar = () => {
             Resume
           </ListItem>
         </Link>
-        <ListItem>
+        <ListItem onClick={handleLogout}>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>
-          <button onClick={handleLogout}>Logout</button>
+          <NavLink
+            activeClassName="bg-blue-800" // Apply a darker background color for the active link
+          >
+            <button>Logout</button>
+          </NavLink>
         </ListItem>
       </List>
     </Card>

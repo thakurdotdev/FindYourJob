@@ -15,7 +15,7 @@ const Hero = () => {
 
   return (
     <main>
-      <div className="flex w-full flex-col justify-around md:px-40 min-h-[90vh]">
+      <div className="flex bg-white w-full flex-col justify-around md:px-40 min-h-[90vh]">
         <div className="flex flex-col p-5 md:my-5 ">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="font-semibold text-amber-900 mx-2"
+              className="font-extrabold text-amber-900 mx-2"
             >
               DREAM
             </motion.span>

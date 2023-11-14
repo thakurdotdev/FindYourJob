@@ -28,9 +28,13 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-row gap-10 mt-10">
+        <div className="flex flex-col md:flex-row gap-10 mt-10">
+          {/* Education Section */}
+
           <div class="flex rounded-md flex-col p-10 bg-white drop-shadow-lg">
-            <h2 class="text-xl font-bold border-b-2 mb-4 text-blue-500">Education</h2>
+            <h2 class="text-xl font-bold border-b-2 mb-4 text-blue-500">
+              Education
+            </h2>
 
             <div class="mb-4">
               <h3 class="text-lg font-semibold">University of Tailwind</h3>
@@ -46,8 +50,12 @@ const UserProfile = () => {
               <p class="text-sm text-gray-500">2015 - 2017</p>
             </div>
           </div>
+
+          {/* Skills Section */}
           <div class="flex rounded-md flex-col p-10  bg-white drop-shadow-lg">
-            <h2 class="text-xl font-bold border-b-2 text-blue-500 mb-4">Skills</h2>
+            <h2 class="text-xl font-bold border-b-2 text-blue-500 mb-4">
+              Skills
+            </h2>
 
             <div class="mb-4">
               <h3 class="text-lg font-semibold">Web Development</h3>

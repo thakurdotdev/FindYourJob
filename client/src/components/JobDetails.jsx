@@ -39,7 +39,9 @@ const JobDetails = () => {
     <div className="flex bg-gray-200  flex-col items-center">
       <div className="w-full bg-gray-100 flex flex-col justify-center items-center min-h-[30vh] mb-10 text-black p-5">
         <div className="flex flex-col justify-center items-center w-full md:w-1/2">
-          <h2 className="md:text-4xl text-center font-bold">{job?.position}</h2>
+          <h2 className="text-3xl md:text-4xl text-center font-bold">
+            {job?.position}
+          </h2>
           <p className="text-center text-2xl text-blue-600 font-semibold">
             {job?.company}
           </p>

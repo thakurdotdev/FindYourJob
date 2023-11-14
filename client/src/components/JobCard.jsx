@@ -31,7 +31,7 @@ const JobCard = ({
           </div>
 
           <div className="flex items-center gap-3 mt-4">
-            <h3 className="font-sans text-gray-900 text-sm md:text-lg">
+            <h3 className="font-sans text-blue-gray-600-600 text-sm md:text-lg">
               {company}
             </h3>
           </div>
@@ -57,7 +57,7 @@ const JobCard = ({
                   <Button
                     variant="text"
                     size="sm"
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 bg-gray-50"
                   >
                     Details
                     <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
@@ -69,7 +69,7 @@ const JobCard = ({
                 <Button
                   variant="text"
                   size="sm"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 bg-gray-50"
                 >
                   Details
                   <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
