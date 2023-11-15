@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 
 const registerController = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, profilePic, resume } = req.body;
 
     const existingUser = await userModal.findOne({ email });
     if (existingUser) {
@@ -21,6 +21,8 @@ const registerController = async (req, res) => {
       name: name,
       email: email,
       password: hashPassword,
+      profilePic: profilePic,
+      resume: resume,
     };
 
     console.log(userData);

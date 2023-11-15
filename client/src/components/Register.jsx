@@ -9,13 +9,15 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
+  const [profilePic, setProfilePic] = useState("");
+  const [resume, setResume] = useState("");
   const [message, showMessage] = useState(false);
   const [emailError, setEmailError] = useState(false);
 
   const register = async (e) => {
     e.preventDefault();
     try {
-      const body = { name, email, password };
+      const body = { name, email, password, profilePic, resume };
       const response = await fetch(
         "https://cute-erin-cobra-kit.cyclic.app/register",
         {
@@ -89,6 +91,20 @@ const Register = () => {
               type="password"
               label="Password"
               required
+            />
+            <Input
+              value={profilePic}
+              onChange={(e) => setProfilePic(e.target.value)}
+              type="text"
+              label="Profile Pic URL"
+              // required
+            />
+            <Input
+              value={resume}
+              onChange={(e) => setResume(e.target.value)}
+              type="text"
+              label="Resume URL"
+              // required
             />
           </div>
           <Button type="submit" className="mt-6" fullWidth>

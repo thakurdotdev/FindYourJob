@@ -50,8 +50,6 @@ const Header = () => {
     setUser(data);
   };
 
-  //Function to logout user
-
   const id = user?.id;
 
   useEffect(() => {
@@ -95,7 +93,7 @@ const Header = () => {
                 <MenuHandler className="">
                   <Button variant="text" size="sm" className="p-2">
                     <Avatar
-                      src={"https://pankajktech.me/assets/about-3c428769.webp"}
+                      src={user.profilePic}
                       withBorder={true}
                       size="sm"
                       alt="logo"

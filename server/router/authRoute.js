@@ -10,7 +10,7 @@ authRoute.post("/login", loginController);
 authRoute.post("/logout", (req, res) => {
   try {
     res.clearCookie("token", {
-      domain: "job-portal-app-kzk0.onrender.com",
+      domain: "cute-erin-cobra-kit.cyclic.app",
       httpOnly: true,
       sameSite: "none",
       secure: true,

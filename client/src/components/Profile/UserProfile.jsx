@@ -17,7 +17,7 @@ const UserProfile = () => {
         <div className="flex rounded-md bg-white flex-col drop-shadow-lg p-10 items-center justify-center">
           <div className="flex flex-row items-center justify-center">
             <img
-              src={"https://pankajktech.me/assets/about-3c428769.webp"}
+              src={user.profilePic}
               alt="avatar"
               className="rounded-full h-32 w-32"
             />
@@ -31,47 +31,51 @@ const UserProfile = () => {
         <div className="flex flex-col md:flex-row gap-10 mt-10">
           {/* Education Section */}
 
-          <div class="flex rounded-md flex-col p-10 bg-white drop-shadow-lg">
-            <h2 class="text-xl font-bold border-b-2 mb-4 text-blue-500">
+          <div className="flex rounded-md flex-col p-10 bg-white drop-shadow-lg">
+            <h2 className="text-xl font-bold border-b-2 mb-4 text-blue-500">
               Education
             </h2>
 
-            <div class="mb-4">
-              <h3 class="text-lg font-semibold">University of Tailwind</h3>
-              <p class="text-gray-600">
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold">University of Tailwind</h3>
+              <p className="text-gray-600">
                 Bachelor of Science in Web Development
               </p>
-              <p class="text-sm text-gray-500">2018 - 2022</p>
+              <p className="text-sm text-gray-500">2018 - 2022</p>
             </div>
 
-            <div class="mb-4">
-              <h3 class="text-lg font-semibold">Tailwind Community College</h3>
-              <p class="text-gray-600">Associate Degree in Design</p>
-              <p class="text-sm text-gray-500">2015 - 2017</p>
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold">
+                Tailwind Community College
+              </h3>
+              <p className="text-gray-600">Associate Degree in Design</p>
+              <p className="text-sm text-gray-500">2015 - 2017</p>
             </div>
           </div>
 
           {/* Skills Section */}
-          <div class="flex rounded-md flex-col p-10  bg-white drop-shadow-lg">
-            <h2 class="text-xl font-bold border-b-2 text-blue-500 mb-4">
+          <div className="flex rounded-md flex-col p-10  bg-white drop-shadow-lg">
+            <h2 className="text-xl font-bold border-b-2 text-blue-500 mb-4">
               Skills
             </h2>
 
-            <div class="mb-4">
-              <h3 class="text-lg font-semibold">Web Development</h3>
-              <p class="text-gray-600">HTML, CSS, JavaScript, React, Node.js</p>
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold">Web Development</h3>
+              <p className="text-gray-600">
+                HTML, CSS, JavaScript, React, Node.js
+              </p>
             </div>
 
-            <div class="mb-4">
-              <h3 class="text-lg font-semibold">Graphic Design</h3>
-              <p class="text-gray-600">
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold">Graphic Design</h3>
+              <p className="text-gray-600">
                 Adobe Photoshop, Illustrator, UI/UX Design
               </p>
             </div>
 
-            <div class="mb-4">
-              <h3 class="text-lg font-semibold">Project Management</h3>
-              <p class="text-gray-600">
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold">Project Management</h3>
+              <p className="text-gray-600">
                 Agile Methodologies, Scrum, Team Leadership
               </p>
             </div>

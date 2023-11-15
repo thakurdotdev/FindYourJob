@@ -35,8 +35,8 @@ export const Loader = () => {
 
 export const LoaderCard = () => {
   return (
-    <div class="center">
-      <div class="loader"></div>
+    <div className="center">
+      <div className="loader"></div>
     </div>
   );
 };

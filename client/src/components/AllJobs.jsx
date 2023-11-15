@@ -7,13 +7,6 @@ import axios from "axios";
 
 import { Button, Input, Typography } from "@material-tailwind/react";
 
-const searchKeywords = [
-  "Frontend Developer",
-  "Remote",
-  "Internship",
-  "Backend",
-  "Fullstack",
-];
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
@@ -25,16 +18,7 @@ const AllJobs = () => {
     getJobs();
   }, []);
 
-  const cacheKey = "cachedJobs"; // Define a key for your local storage cache
-
   const getJobs = async () => {
-    // Check local storage for cached data
-    const cachedData = localStorage.getItem(cacheKey);
-    if (cachedData) {
-      const cachedJobs = JSON.parse(cachedData);
-      setJobs(cachedJobs);
-    }
-
     const { data } = await axios.get(
       "https://cute-erin-cobra-kit.cyclic.app/getJobs",
       {
@@ -44,7 +28,6 @@ const AllJobs = () => {
 
     // Update the cache in local storage with the newly fetched data
     const updatedJobs = [...jobs, ...data.jobs];
-    localStorage.setItem(cacheKey, JSON.stringify(updatedJobs));
 
     setPage(page + 1);
     setJobs(updatedJobs);
@@ -53,7 +36,7 @@ const AllJobs = () => {
 
   return (
     <section className="min-h-[87vh]  bg-gray-200">
-      <div className="flex bg-white flex-col justify-center items-center w-full min-h-[30vh] drop-shadow-md mb-20">
+      <div className="flex bg-white flex-col justify-center items-center w-full min-h-[30vh] drop-shadow-md mb-10 p-10">
         <Typography className="text-light-blue-900 text-2xl md:text-4xl font-bold my-5">
           Search Your Dream Job
         </Typography>
@@ -68,27 +51,6 @@ const AllJobs = () => {
             />
           </div>
         </form>
-        <div className="w-full flex flex-wrap justify-center items-center gap-5 my-5">
-          {searchKeywords.map((keyword) => (
-            <Button
-              variant="text"
-              className="bg-gray-100 bg-opacity-50 backdrop-blur-md shadow-md"
-              size="sm"
-              onClick={() => setSearch(keyword)}
-            >
-              {keyword}
-            </Button>
-          ))}
-
-          <Button
-            variant="text"
-            className="bg-gray-100 bg-opacity-50 backdrop-blur-md shadow-md"
-            size="sm"
-            onClick={() => setSearch("")}
-          >
-            All
-          </Button>
-        </div>
       </div>
 
       <InfiniteScroll

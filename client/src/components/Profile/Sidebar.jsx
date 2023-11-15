@@ -18,7 +18,7 @@ import { UserContext } from "../../Context/userContext";
 import { Link, NavLink, useNavigate } from "react-router-dom"; // Import NavLink from react-router-dom
 
 const Sidebar = () => {
-  const { Logout } = useContext(UserContext);
+  const { Logout, user } = useContext(UserContext);
   const Navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -49,10 +49,7 @@ const Sidebar = () => {
           </ListItemPrefix>
           Apply for Jobs
         </ListItem>
-        <Link
-          to="https://drive.google.com/file/d/1Yd3Z6GO8-vxHOldYckjj42sf8mjP2SgP/view"
-          target="_blank"
-        >
+        <Link to={user.resume} target="_blank">
           <ListItem>
             <ListItemPrefix>
               <DocumentIcon className="h-5 w-5" />
@@ -64,9 +61,7 @@ const Sidebar = () => {
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>
-          <NavLink
-            activeClassName="bg-blue-800" // Apply a darker background color for the active link
-          >
+          <NavLink>
             <button>Logout</button>
           </NavLink>
         </ListItem>
