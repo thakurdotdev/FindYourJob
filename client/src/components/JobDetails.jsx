@@ -83,9 +83,9 @@ const JobDetails = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col-reverse md:flex-row w-full md:min-h-[72vh] justify-center mb-5"
+        className="flex md:flex-row w-full justify-center items-center mb-5"
       >
-        <div className="w-[90%] gap-5 flex flex-col md:w-1/2  px-4">
+        <div className="w-[95%] gap-5 flex justify-center flex-col md:w-1/2  px-4">
           <div className="bg-white drop-shadow-md rounded-md p-5">
             <Typography variant="h5" className="my-2">
               Job Description
@@ -191,7 +191,7 @@ const JobDetails = () => {
                 <div className="flex items-center justify-center w-full">
                   <label
                     htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                    className="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                   >
                     <div className="flex flex-col items-center justify-center pt-2 pb-2">
                       <ArrowUpOnSquareIcon className="h-6 text-gray-500" />
