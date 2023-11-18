@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 
-import { Button, Input, Typography } from "@material-tailwind/react";
+import { Input, Typography } from "@material-tailwind/react";
 
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);

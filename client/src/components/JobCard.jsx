@@ -9,6 +9,7 @@ import {
 
 import { Button, Card } from "@material-tailwind/react";
 import { formatDate } from "../Constants/Date";
+import { motion } from "framer-motion";
 
 const JobCard = ({
   job: { company, position, workLocation, locationType, id, author, updatedAt },
@@ -17,7 +18,12 @@ const JobCard = ({
   const DateDiff = formatDate(updatedAt);
 
   return (
-    <div className="w-full md:w-1/2 px-4 mb-8">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-full md:w-1/2 px-4 mb-8"
+    >
       <Card
         shadow={false}
         className="rounded-lg bg-white  shadow-sm overflow-hidden"
@@ -79,7 +85,7 @@ const JobCard = ({
           </div>
         </div>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

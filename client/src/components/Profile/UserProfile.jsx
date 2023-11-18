@@ -17,7 +17,11 @@ const UserProfile = () => {
         <div className="flex rounded-md bg-white flex-col drop-shadow-lg p-10 items-center justify-center">
           <div className="flex flex-row items-center justify-center">
             <img
-              src={user.profilePic}
+              src={
+                user.profilePic
+                  ? user.profilePic
+                  : "https://findyourjob.vercel.app/src/assets/FYJFavicon.png"
+              }
               alt="avatar"
               className="rounded-full h-32 w-32"
             />

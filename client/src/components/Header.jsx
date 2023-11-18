@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/userContext";
 
 import Logo from "../assets/FYJLogo.png";
+import DP from "../assets/FYJFavicon.png";
 import {
   Navbar,
   Collapse,
@@ -19,6 +20,7 @@ import {
   PencilSquareIcon,
   PowerIcon,
   UserCircleIcon,
+  UserIcon,
 } from "@heroicons/react/24/outline";
 
 const Header = () => {
@@ -51,6 +53,7 @@ const Header = () => {
   };
 
   const id = user?.id;
+  const profilePic = user?.profilePic;
 
   useEffect(() => {
     window.addEventListener(
@@ -93,9 +96,9 @@ const Header = () => {
                 <MenuHandler className="">
                   <Button variant="text" size="sm" className="p-2">
                     <Avatar
-                      src={user.profilePic}
-                      withBorder={true}
+                      src={profilePic ? profilePic : DP}
                       size="sm"
+                      withBorder="yes"
                       alt="logo"
                       className="p-0.5"
                     />
