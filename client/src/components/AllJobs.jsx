@@ -35,7 +35,7 @@ const AllJobs = () => {
   };
 
   return (
-    <section className="min-h-[87vh]  bg-gray-200">
+    <section className="min-h-[87vh]  bg-gray-100">
       <div className="flex bg-white flex-col justify-center items-center w-full min-h-[30vh] drop-shadow-md mb-10 p-10">
         <Typography className="text-light-blue-900 text-2xl md:text-4xl font-bold my-5">
           Search Your Dream Job
@@ -45,7 +45,13 @@ const AllJobs = () => {
           <div className=" w-[20rem] md:w-[32rem] relative">
             <Input
               type="text"
-              label="Search Job Title, Company, Location"
+              outline={true}
+              placeholder="Search for a job"
+              className="!border !border-gray-600 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+              labelProps={{
+                className: "hidden",
+              }}
+              containerProps={{ className: "min-w-[100px]" }}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />

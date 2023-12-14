@@ -41,7 +41,7 @@ const EditJob = () => {
     e.preventDefault();
     try {
       const body = { company, position, workLocation, locationType };
-      await fetch(`https://job-portal-app-kzk0.onrender.com/updateJob/${id}`, {
+      await fetch(`https://cute-erin-cobra-kit.cyclic.app/updateJob/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -57,7 +57,7 @@ const EditJob = () => {
 
   const handleDelete = async () => {
     try {
-      await fetch(`https://job-portal-app-kzk0.onrender.com/deleteJob/${id}`, {
+      await fetch(`https://cute-erin-cobra-kit.cyclic.app/deleteJob/${id}`, {
         method: "DELETE",
       });
 
@@ -84,11 +84,10 @@ const EditJob = () => {
       className="flex justify-center items-center min-h-[83vh] bg-gray-100"
     >
       <div>
-        <Toaster position="top-right" reverseOrder={false} />
+        <Toaster position="bottom-right" reverseOrder={false} />
       </div>
       {edited && toast.success("Job Edited Successfully")}
-      {deleted &&
-        toast.success("Job Deleted Successfully, Redirecting to Jobs Page")}
+      {deleted && toast.success("Job Deleted Successfully")}
       <Card
         color="white"
         shadow={true}

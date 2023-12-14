@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../../Context/userContext";
 import { Loader } from "../Loader";
 import Sidebar from "./Sidebar";
+import DP from "../../assets/FYJFavicon.png";
 
 const UserProfile = () => {
   const { user } = useContext(UserContext);
@@ -15,13 +16,9 @@ const UserProfile = () => {
       <Sidebar />
       <div className="flex flex-col px-5">
         <div className="flex rounded-md bg-white flex-col drop-shadow-lg p-10 items-center justify-center">
-          <div className="flex flex-row items-center justify-center">
+          <div className="flex flex-col md:flex-row items-center justify-center">
             <img
-              src={
-                user.profilePic
-                  ? user.profilePic
-                  : "https://findyourjob.vercel.app/src/assets/FYJFavicon.png"
-              }
+              src={user.profilePic ? user.profilePic : DP}
               alt="avatar"
               className="rounded-full h-32 w-32"
             />

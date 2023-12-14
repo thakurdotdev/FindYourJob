@@ -53,7 +53,7 @@ const Register = () => {
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
       <div>
-        <Toaster position="top-right" reverseOrder={false} />
+        <Toaster position="bottom-right" reverseOrder={false} />
       </div>
       {message && toast.success("Successfully registered!")}
       <Card color="white" shadow={true} className="items-center p-8">

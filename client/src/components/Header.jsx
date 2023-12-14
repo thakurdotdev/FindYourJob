@@ -20,7 +20,6 @@ import {
   PencilSquareIcon,
   PowerIcon,
   UserCircleIcon,
-  UserIcon,
 } from "@heroicons/react/24/outline";
 
 const Header = () => {
@@ -144,7 +143,12 @@ const Header = () => {
                 </Button>
               </Link>
               <Link to={"/login"}>
-                <Button variant="text" className="hidden lg:inline-block">
+                <Button
+                  variant="gradient"
+                  color="amber"
+                  size="sm"
+                  className="hidden lg:inline-block"
+                >
                   Login
                 </Button>
               </Link>
@@ -209,12 +213,18 @@ const Header = () => {
         <>
           <Link to={"/register"}>
             <Button variant="gradient" size="sm" fullWidth className="my-5">
-              <span>Register</span>
+              Register
             </Button>
           </Link>
           <Link to={"/login"}>
-            <Button variant="gradient" size="sm" fullWidth className="my-5">
-              <span>Login</span>
+            <Button
+              variant="gradient"
+              color="amber"
+              size="sm"
+              fullWidth
+              className="my-5"
+            >
+              Login
             </Button>
           </Link>
         </>

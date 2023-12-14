@@ -68,7 +68,7 @@ const Login = () => {
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
       <div>
-        <Toaster position="top-right" reverseOrder={false} />
+        <Toaster position="bottom-right" reverseOrder={false} />
       </div>
       {message && toast.success("Successfully logged in!")}
       <Card color="white" shadow={true} className="p-8 items-center">
