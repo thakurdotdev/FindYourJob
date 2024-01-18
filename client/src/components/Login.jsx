@@ -18,15 +18,12 @@ const Login = () => {
 
   const login = async (email, password) => {
     const body = { email, password };
-    const response = await fetch(
-      "https://cute-erin-cobra-kit.cyclic.app/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-        credentials: "include",
-      }
-    );
+    const response = await fetch("https://findyourjob.cyclic.app/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+      credentials: "include",
+    });
     return response;
   };
 

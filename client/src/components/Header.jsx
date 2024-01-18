@@ -41,12 +41,9 @@ const Header = () => {
 
   //Function to fetch user data
   const fetchUser = async () => {
-    const response = await fetch(
-      "https://cute-erin-cobra-kit.cyclic.app/profile",
-      {
-        credentials: "include",
-      }
-    );
+    const response = await fetch("https://findyourjob.cyclic.app/profile", {
+      credentials: "include",
+    });
     const data = await response.json();
     setUser(data);
   };

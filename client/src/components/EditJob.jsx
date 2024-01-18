@@ -21,9 +21,7 @@ const EditJob = () => {
 
   const getJob = async () => {
     try {
-      const response = await fetch(
-        `https://cute-erin-cobra-kit.cyclic.app/job/${id}`
-      );
+      const response = await fetch(`https://findyourjob.cyclic.app/job/${id}`);
       const jobData = await response.json();
       const { company, position, workLocation, locationType } = jobData.job;
       setCompany(company);
@@ -41,7 +39,7 @@ const EditJob = () => {
     e.preventDefault();
     try {
       const body = { company, position, workLocation, locationType };
-      await fetch(`https://cute-erin-cobra-kit.cyclic.app/updateJob/${id}`, {
+      await fetch(`https://findyourjob.cyclic.app/updateJob/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -57,7 +55,7 @@ const EditJob = () => {
 
   const handleDelete = async () => {
     try {
-      await fetch(`https://cute-erin-cobra-kit.cyclic.app/deleteJob/${id}`, {
+      await fetch(`https://findyourjob.cyclic.app/deleteJob/${id}`, {
         method: "DELETE",
       });
 

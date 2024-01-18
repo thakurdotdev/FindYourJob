@@ -12,9 +12,9 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="bg-gray-200 flex py-5">
+    <div className="bg-gray-200 flex">
       <Sidebar />
-      <div className="flex flex-col px-5">
+      <div className="flex flex-col p-5">
         <div className="flex rounded-md bg-white flex-col drop-shadow-lg p-10 items-center justify-center">
           <div className="flex flex-col md:flex-row items-center justify-center">
             <img
@@ -29,7 +29,7 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-10 mt-10">
+        <div className="flex flex-col md:flex-row gap-5 mt-5">
           {/* Education Section */}
 
           <div className="flex rounded-md flex-col p-10 bg-white drop-shadow-lg">

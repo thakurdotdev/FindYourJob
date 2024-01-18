@@ -19,12 +19,9 @@ const AllJobs = () => {
   }, []);
 
   const getJobs = async () => {
-    const { data } = await axios.get(
-      "https://cute-erin-cobra-kit.cyclic.app/getJobs",
-      {
-        params: { page: page, size: LIMIT },
-      }
-    );
+    const { data } = await axios.get("https://findyourjob.cyclic.app/getJobs", {
+      params: { page: page, size: LIMIT },
+    });
 
     // Update the cache in local storage with the newly fetched data
     const updatedJobs = [...jobs, ...data.jobs];

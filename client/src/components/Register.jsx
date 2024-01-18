@@ -18,14 +18,11 @@ const Register = () => {
     e.preventDefault();
     try {
       const body = { name, email, password, profilePic, resume };
-      const response = await fetch(
-        "https://cute-erin-cobra-kit.cyclic.app/register",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }
-      );
+      const response = await fetch("https://findyourjob.cyclic.app/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
 
       if (response.status === 409) {
         setEmailError(true);
