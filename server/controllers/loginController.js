@@ -7,14 +7,14 @@ const loginController = async (req, res) => {
 
   const user = await userModal.findOne({ email });
   if (!user) {
-    return res.status(401).send({
+    return res.status(400).send({
       success: false,
       message: "Invalid Email",
     });
   }
   const isMatch = bcrypt.compareSync(password, user.password);
   if (!isMatch) {
-    return res.status(402).send({
+    return res.status(400).send({
       success: false,
       message: "Invalid Password",
     });
@@ -33,7 +33,6 @@ const loginController = async (req, res) => {
     );
     res
       .cookie("token", token, {
-        domain: "cute-erin-cobra-kit.cyclic.app",
         expires: new Date(Date.now() + 86400000),
         httpOnly: true,
         sameSite: "none",
@@ -43,7 +42,6 @@ const loginController = async (req, res) => {
       .json({
         success: true,
         message: "Logged in successfully",
-        id: user._id,
       });
   }
 };

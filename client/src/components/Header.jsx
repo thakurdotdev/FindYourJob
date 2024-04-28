@@ -24,29 +24,12 @@ import {
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
-  const { user, setUser, Logout } = useContext(UserContext);
+  const { user, Logout } = useContext(UserContext);
   const Navigate = useNavigate();
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
-  const handleLogout = async () => {
-    try {
-      await Logout(); // Call the logout function from the context
-    } catch (error) {
-      console.error("Logout error:", error);
-    }
-  };
-
-  //Function to fetch user data
-  const fetchUser = async () => {
-    const response = await fetch("https://findyourjob.cyclic.app/profile", {
-      credentials: "include",
-    });
-    const data = await response.json();
-    setUser(data);
-  };
+  // useEffect(() => {
+  //   fetchUser();
+  // }, []);
 
   const id = user?.id;
   const profilePic = user?.profilePic;
@@ -117,7 +100,9 @@ const Header = () => {
                   </MenuItem>
 
                   <MenuItem
-                    onClick={handleLogout}
+                    onClick={() => {
+                      Logout();
+                    }}
                     className="flex items-center gap-2"
                   >
                     <PowerIcon className="h-5 w-5" />

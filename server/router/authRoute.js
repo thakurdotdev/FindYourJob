@@ -9,12 +9,7 @@ authRoute.post("/login", loginController);
 
 authRoute.post("/logout", (req, res) => {
   try {
-    res.clearCookie("token", {
-      domain: "cute-erin-cobra-kit.cyclic.app",
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-    });
+    res.clearCookie("token");
     res.status(200).json("Logged out successfully");
   } catch (err) {
     res.status(500).json(err);

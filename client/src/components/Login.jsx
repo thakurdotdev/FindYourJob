@@ -1,59 +1,40 @@
-import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import { toast, Toaster } from "react-hot-toast";
-import Logo from "../assets/FYJLogo.png";
-import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import { Button, Card, Input, Typography } from "@material-tailwind/react";
 import { motion } from "framer-motion";
+import { useContext, useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../assets/FYJLogo.png";
 
 import { UserContext } from "../Context/userContext";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, showemailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [message, showMessage] = useState(false);
 
-  const { setUser } = useContext(UserContext);
+  const { fetchUser } = useContext(UserContext);
 
-  const login = async (email, password) => {
-    const body = { email, password };
-    const response = await fetch("https://findyourjob.cyclic.app/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-      credentials: "include",
-    });
-    return response;
-  };
-
-  const handleLogin = async (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await login(email, password);
-      switch (response.status) {
-        case 200:
-          const data = await response.json();
-          setUser(data);
-          showMessage(true);
-          setTimeout(() => {
-            window.location.href = "/jobs";
-          }, 1000);
-          break;
-        case 401:
-          showemailError(true);
-          setTimeout(() => {
-            showemailError(false);
-          }, 2000);
-          break;
-        case 402:
-          setPasswordError(true);
-          setTimeout(() => {
-            setPasswordError(false);
-          }, 2000);
+      const body = { email, password };
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        credentials: "include",
+      });
+      const data = await response.json();
+      if (response.status === 400) {
+        toast.error(data.message);
+      } else if (response.status === 200) {
+        fetchUser();
+        toast.success("Logged in successfully");
+        navigate("/jobs");
       }
-    } catch (err) {
-      console.log(err.message);
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.error(error);
     }
   };
 
@@ -65,16 +46,15 @@ const Login = () => {
       className="flex flex-col items-center justify-center min-h-[83vh] bg-gray-100"
     >
       <div>
-        <Toaster position="bottom-right" reverseOrder={false} />
+        <Toaster position="top-center" reverseOrder={false} />
       </div>
-      {message && toast.success("Successfully logged in!")}
       <Card color="white" shadow={true} className="p-8 items-center">
         <Typography variant="h4" color="blue-gray">
           Login To
         </Typography>
         <img src={Logo} alt="Logo" className="w-44" />
         <form
-          onSubmit={handleLogin}
+          onSubmit={loginHandler}
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
         >
           <div className="mb-4 flex flex-col gap-6">
@@ -85,11 +65,7 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            {emailError && (
-              <Typography color="red" className="font-thin text-sm">
-                Email not found!
-              </Typography>
-            )}
+
             <Input
               type="password"
               label="Password"
@@ -97,11 +73,6 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            {passwordError && (
-              <Typography color="red" className="font-thin">
-                Incorrect Password!
-              </Typography>
-            )}
           </div>
           <Button className="mt-6" fullWidth type="submit">
             Login
