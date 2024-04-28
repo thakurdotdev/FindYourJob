@@ -19,9 +19,12 @@ const AllJobs = () => {
   }, []);
 
   const getJobs = async () => {
-    const { data } = await axios.get("http://localhost:5000/getJobs", {
-      params: { page: page, size: LIMIT },
-    });
+    const { data } = await axios.get(
+      "https://findyourjob.up.railway.app/getJobs",
+      {
+        params: { page: page, size: LIMIT },
+      }
+    );
 
     setJobs([...jobs, ...data.jobs]);
     setTotalJobs(data.total);

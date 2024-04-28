@@ -6,7 +6,7 @@ import DataBase from "./database/conn.js";
 import jobRoute from "./router/jobRoute.js";
 import cookieParser from "cookie-parser";
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 configDotenv();
 
 const app = Express();
@@ -14,7 +14,7 @@ app.use(Express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["https://findyourjob.vercel.app", "http://localhost:5173"],
     credentials: true,
   })
 );

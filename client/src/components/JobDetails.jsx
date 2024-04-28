@@ -17,7 +17,7 @@ const JobDetails = () => {
   const [job, setJob] = useState(null);
 
   useEffect(() => {
-    fetch(`https://findyourjob.cyclic.app/job/${id}`)
+    fetch(`https://findyourjob.up.railway.app/job/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setJob(data.job);

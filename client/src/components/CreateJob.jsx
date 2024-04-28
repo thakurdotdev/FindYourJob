@@ -17,7 +17,7 @@ const CreateJob = () => {
     e.preventDefault();
     try {
       const body = { company, position, workLocation, locationType };
-      await fetch("https://findyourjob.cyclic.app/addJobs", {
+      await fetch("https://findyourjob.up.railway.app/addJobs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
