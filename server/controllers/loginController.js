@@ -45,6 +45,8 @@ const loginController = async (req, res) => {
         expires: new Date(Date.now() + 86400000),
         httpOnly: true,
         secure: true,
+        sameSite: "none",
+        domain: "findyourjob.up.railway.app",
       })
       .status(200)
       .json({

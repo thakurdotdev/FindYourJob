@@ -9,7 +9,12 @@ authRoute.post("/login", loginController);
 
 authRoute.get("/logout", (req, res) => {
   try {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+      domain: "findyourjob.up.railway.app",
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
     res.status(200).json("Logged out successfully");
   } catch (err) {
     res.status(500).json(err);
