@@ -32,7 +32,7 @@ const Hero = () => {
             >
               DREAM
             </motion.span>
-            Career"
+            Job"
           </motion.h1>
 
           <motion.h2
