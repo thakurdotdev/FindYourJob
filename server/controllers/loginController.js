@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 const loginController = async (req, res) => {
   const { email, password } = req.body;
 
+  // Check if the email exists
   const user = await userModal.findOne({ email });
   if (!user) {
     return res.status(400).send({
@@ -12,7 +13,11 @@ const loginController = async (req, res) => {
       message: "Invalid Email",
     });
   }
+
+  // Compare the password
   const isMatch = bcrypt.compareSync(password, user.password);
+
+  // If the password is invalid
   if (!isMatch) {
     return res.status(400).send({
       success: false,
@@ -20,6 +25,7 @@ const loginController = async (req, res) => {
     });
   }
 
+  // If the password is valid
   if (isMatch) {
     const token = jwt.sign(
       {
@@ -29,13 +35,15 @@ const loginController = async (req, res) => {
         profilePic: user.profilePic,
         resume: user.resume,
       },
-      process.env.JWT_SECRET
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1d",
+      }
     );
     res
       .cookie("token", token, {
         expires: new Date(Date.now() + 86400000),
         httpOnly: true,
-        sameSite: "none",
         secure: true,
       })
       .status(200)

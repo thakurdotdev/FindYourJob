@@ -1,8 +1,10 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext({});
 
 export const UserContextProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export const UserContextProvider = ({ children }) => {
       const response = await fetch(
         "https://findyourjob.up.railway.app/logout",
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
@@ -32,6 +34,7 @@ export const UserContextProvider = ({ children }) => {
       );
       if (response.status === 200) {
         setUser(null);
+        navigate("/");
       }
     } catch (error) {
       console.error(error);
