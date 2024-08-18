@@ -10,7 +10,7 @@ authRoute.post("/login", loginController);
 authRoute.get("/logout", (req, res) => {
   try {
     res.clearCookie("token", {
-      domain: "findyourjob.up.railway.app",
+      domain: "findyourjob.azurewebsites.net",
       httpOnly: true,
       secure: true,
       sameSite: "none",
