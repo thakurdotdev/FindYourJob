@@ -46,7 +46,7 @@ const loginController = async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        domain: "findyourjob.up.railway.app",
+        domain: "findyourjob.azurewebsites.net",
       })
       .status(200)
       .json({
