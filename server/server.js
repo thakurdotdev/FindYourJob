@@ -14,7 +14,7 @@ app.use(Express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["https://findyourjob.vercel.app", "http://localhost:5173"],
+    origin: ["https://jobs.thakur.dev", "http://localhost:5173"],
     credentials: true,
   })
 );
