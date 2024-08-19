@@ -17,7 +17,7 @@ const JobDetails = () => {
   const [job, setJob] = useState(null);
 
   useEffect(() => {
-    fetch(`https://findyourjob.up.railway.app/job/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}job/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setJob(data.job);

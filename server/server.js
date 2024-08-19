@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: ["https://jobs.thakur.dev", "http://localhost:5173"],
     credentials: true,
-  })
+  }),
 );
 
 app.use(authRoute, jobRoute);
@@ -24,7 +24,7 @@ app.use(authRoute, jobRoute);
 async function startServer() {
   try {
     await DataBase();
-    app.listen(port, "0.0.0.0", () => {
+    app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
     });
   } catch (err) {

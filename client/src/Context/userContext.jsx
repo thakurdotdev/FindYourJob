@@ -1,40 +1,50 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const UserContext = createContext({});
 
 export const UserContextProvider = ({ children }) => {
-  const navigate = useNavigate();
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchUser();
   }, []);
 
-  //Function to fetch user data
   const fetchUser = async () => {
-    const response = await fetch("https://findyourjob.up.railway.app/profile", {
-      credentials: "include",
-    });
-    const data = await response.json();
-    setUser(data);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}profile`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      if (response.status === 200) {
+        const data = await response.json();
+        setUser(data);
+        setLoading(false);
+      } else {
+        setUser(null);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const Logout = async () => {
     try {
-      const response = await fetch(
-        "https://findyourjob.up.railway.app/logout",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}logout`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
       if (response.status === 200) {
         setUser(null);
-        navigate("/");
+        Navigate("/login");
       }
     } catch (error) {
       console.error(error);
@@ -42,7 +52,7 @@ export const UserContextProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, fetchUser, Logout }}>
+    <UserContext.Provider value={{ user, setUser, fetchUser, Logout, loading }}>
       {children}
     </UserContext.Provider>
   );

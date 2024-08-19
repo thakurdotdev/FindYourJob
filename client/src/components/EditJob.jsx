@@ -21,9 +21,7 @@ const EditJob = () => {
 
   const getJob = async () => {
     try {
-      const response = await fetch(
-        `https://findyourjob.up.railway.app/job/${id}`
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}job/${id}`);
       const jobData = await response.json();
       const { company, position, workLocation, locationType } = jobData.job;
       setCompany(company);
@@ -41,7 +39,7 @@ const EditJob = () => {
     e.preventDefault();
     try {
       const body = { company, position, workLocation, locationType };
-      await fetch(`https://findyourjob.up.railway.app/updateJob/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}updateJob/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -57,7 +55,7 @@ const EditJob = () => {
 
   const handleDelete = async () => {
     try {
-      await fetch(`https://findyourjob.up.railway.app/deleteJob/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}deleteJob/${id}`, {
         method: "DELETE",
       });
 

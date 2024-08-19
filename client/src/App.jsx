@@ -1,50 +1,66 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import CreateJob from "./components/CreateJob";
-import AllJobs from "./components/AllJobs";
+import React, { useContext } from "react";
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
+import { UserContextProvider, UserContext } from "./Context/userContext";
+import LoadingScreen from "./components/LoaderScreen";
+
+// Directly imported components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import Hero from "./components/Hero";
+import AllJobs from "./components/AllJobs";
+import CreateJob from "./components/CreateJob";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import EditJob from "./components/EditJob";
-import { UserContextProvider } from "./Context/userContext";
 import JobDetails from "./components/JobDetails";
-import Hero from "./components/Hero";
 import Error from "./components/Error";
-import ScrollToTop from "./components/ScrollToTop";
 import UserProfile from "./components/Profile/UserProfile";
 
-const App = () => {
+const PrivateRoutes = () => {
+  const { user, loading } = useContext(UserContext);
+
+  if (loading) {
+    return <LoadingScreen isLoading={loading} />;
+  }
+
+  if (!user?.email) {
+    return <Navigate to="/login" />;
+  }
+
+  return <Outlet />;
+};
+
+function App() {
   return (
     <UserContextProvider>
-      <Header />
-      <Outlet />
-      <ScrollToTop />
-      <Footer />
+      <Router>
+        <Header />
+        <ScrollToTop />
+        <Routes>
+          <Route element={<PrivateRoutes />}>
+            <Route path="/addJob" element={<CreateJob />} />
+            <Route path="/edit/:id" element={<EditJob />} />
+            <Route path="/job/:id" element={<JobDetails />} />
+            <Route path="/user/profile" element={<UserProfile />} />
+          </Route>
+
+          <Route path="/" element={<Hero />} />
+          <Route path="/jobs" element={<AllJobs />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+        <Footer />
+      </Router>
     </UserContextProvider>
   );
-};
+}
 
-const appRouter = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-
-    errorElement: <Error />,
-    children: [
-      { path: "/", element: <Hero /> },
-      { path: "/jobs", element: <AllJobs /> },
-      { path: "/addJob", element: <CreateJob /> },
-      { path: "/register", element: <Register /> },
-      { path: "/login", element: <Login /> },
-      { path: "/edit/:id", element: <EditJob /> },
-      { path: "/job/:id", element: <JobDetails /> },
-      { path: "/user/profile", element: <UserProfile /> },
-    ],
-  },
-]);
-
-const Root = () => {
-  return <RouterProvider router={appRouter} />;
-};
-
-export default Root;
+export default App;

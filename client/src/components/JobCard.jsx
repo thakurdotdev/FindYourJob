@@ -17,6 +17,8 @@ const JobCard = ({
   const { user } = useContext(UserContext);
   const DateDiff = formatDate(updatedAt);
 
+  console.log(user);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

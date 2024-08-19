@@ -38,7 +38,7 @@ const loginController = async (req, res) => {
       process.env.JWT_SECRET,
       {
         expiresIn: "1d",
-      }
+      },
     );
     res
       .cookie("token", token, {

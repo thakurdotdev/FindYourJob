@@ -4,7 +4,6 @@ import { LoaderCard } from "./Loader.jsx";
 import { motion } from "framer-motion";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
-
 import { Input, Typography } from "@material-tailwind/react";
 
 const AllJobs = () => {
@@ -19,12 +18,9 @@ const AllJobs = () => {
   }, []);
 
   const getJobs = async () => {
-    const { data } = await axios.get(
-      "https://findyourjob.up.railway.app/getJobs",
-      {
-        params: { page: page, size: LIMIT },
-      }
-    );
+    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}getJobs`, {
+      params: { page: page, size: LIMIT },
+    });
 
     setJobs([...jobs, ...data.jobs]);
     setTotalJobs(data.total);
