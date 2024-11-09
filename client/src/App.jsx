@@ -47,12 +47,12 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/addJob" element={<CreateJob />} />
             <Route path="/edit/:id" element={<EditJob />} />
-            <Route path="/job/:id" element={<JobDetails />} />
             <Route path="/user/profile" element={<UserProfile />} />
           </Route>
 
           <Route path="/" element={<Hero />} />
           <Route path="/jobs" element={<AllJobs />} />
+          <Route path="/job/:id" element={<JobDetails />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error />} />

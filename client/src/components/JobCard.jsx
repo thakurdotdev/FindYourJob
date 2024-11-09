@@ -17,8 +17,6 @@ const JobCard = ({
   const { user } = useContext(UserContext);
   const DateDiff = formatDate(updatedAt);
 
-  console.log(user);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -51,7 +49,7 @@ const JobCard = ({
               <span className="font-serif text-sm">{DateDiff}</span>
             </div>
 
-            {user.id === author ? (
+            {user?.id === author ? (
               <div className="flex items-center gap-2">
                 <Link to={`/edit/${id}`}>
                   <Button
